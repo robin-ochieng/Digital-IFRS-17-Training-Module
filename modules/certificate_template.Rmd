@@ -1,0 +1,20 @@
+---
+title: "Certificate of Completion"
+output: pdf_document
+params:
+  name: "Participant"
+  score: 0
+  total: 0
+---
+
+# Certificate of Completion
+
+This is to certify that **`r params$name`** has successfully completed the  
+**IFRS 17 Digital Training Module** with a score of  
+**`r params$score` out of `r params$total`**.
+
+Date of Completion: `r Sys.Date()`
+
+---
+
+*Issued by the Wakanda Insurance Academy*

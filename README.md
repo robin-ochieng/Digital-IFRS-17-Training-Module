@@ -1,1 +1,1 @@
-# Digital IFRS 17 Training Module
+# IFRS 17 Digital Training Module
