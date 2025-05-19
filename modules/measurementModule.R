@@ -7,14 +7,15 @@ IFRS17MeasurementUI <- function(id) {
       width = 12,
       tags$div(
         class = "logo-wrapper d-flex justify-content-between align-items-center",
-        tags$img(src = "images/kenbright.png", class = "logo logo-kenbright"),
-        tags$img(src = "images/ira_logo_.png", class = "logo logo-afdb")
+        tags$img(src = "images/ira_logo_.png", class = "logo logo-afdb"),
+        # tags$img(src = "images/kenbright.png", class = "logo logo-kenbright")
+        
       )
     )
   )
 
   tagList(
-    logo_bar,
+    # logo_bar,
     div(class = "model-outer-wrapper",
         div(class = "ifrs17-model-container",
             h2("📊 Measurement Models in IFRS 17", class = "section-title"),
@@ -40,12 +41,21 @@ IFRS17MeasurementUI <- function(id) {
             div(plotOutput(ns("model_plot")), class = "plot-wrapper")
             )
         )
-    )
+    ),
+          div(
+            class = "intro-nav",
+            actionButton(
+              ns("to_module_1"),
+              label = tagList(icon("arrow-right"), "Next: Module 1 - Introduction to IFRS 17"),
+              class = "control-button-tavnav"
+            )
+          )
   )
 }
 
 IFRS17MeasurementServer <- function(id) {
   moduleServer(id, function(input, output, session) {
+
     output$model_plot <- renderPlot({
       req(input$model_select)
 
@@ -93,6 +103,9 @@ IFRS17MeasurementServer <- function(id) {
         "The VFA is designed for contracts with direct participation features. It reflects an insurer’s share in underlying asset returns and adjusts profit recognition accordingly."
     )
   })
+
+    # expose the click
+    reactive(input$to_module_1)
 
 
   })
