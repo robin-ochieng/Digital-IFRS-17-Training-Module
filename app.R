@@ -13,8 +13,7 @@ library(shinyBS)
 library(scales)
 library(shinyFeedback)
 shinyjs::useShinyjs()
-if (!tinytex::is_tinytex()) tinytex::install_tinytex()
-library(tinytex)
+
 
 source("modules/caseStudiesModule.R")
 source("modules/introModule.R")
@@ -58,13 +57,13 @@ ui <- dashboardPage(
         id = "sidebar", 
         menuItem("Introduction", tabName = "intro", icon = icon("info-circle")),
         menuItem("Measurement Models", tabName = "measurement", icon = icon("balance-scale")),
-        menuItem("Quizzes", tabName = "quiz", icon = icon("clipboard-check")),
+        menuItem("Module 1 - Introduction to IFRS17", tabName = "quiz", icon = icon("clipboard-check")),
         menuItem("Case Studies", tabName = "cases", icon = icon("book-open"))
       )
-    ),
-    div(class = "sidebar-footer",
-        img(src = "images/kenbright.png")
     )
+    # div(class = "sidebar-footer",
+    #     img(src = "images/kenbright.png")
+    # )
   ), 
   dashboardBody(
     shinyFeedback::useShinyFeedback(),
@@ -96,9 +95,32 @@ ui <- dashboardPage(
 # Define the server logic
 server <- function(input, output, session) {
 
+  # This now captures the Intro navigation event
+  intro_nav <- IFRS17TrainingIntroServer("intro")
   
-  IFRS17TrainingIntroServer("intro")
-  IFRS17MeasurementServer("measurement")
+  # When the user clicks “Next: Measurement Models”, jump the sidebar
+  observeEvent(intro_nav(), {
+    updateTabItems(
+      session,            # THIS session is the **root** session
+      inputId   = "sidebar",
+      selected  = "measurement"
+    )
+  })
+
+
+  # This captures the Measurement navigation event
+  measurement_nav <- IFRS17MeasurementServer("measurement")
+
+  # When the user clicks “Next: Module 1 - Introduction to IFRS 17”, jump the sidebar 
+  observeEvent(measurement_nav(), {
+    updateTabItems(
+      session,            # THIS session is the **root** session
+      inputId   = "sidebar",
+      selected  = "quiz"
+    )
+  })
+
+  
   IFRS17QuizServer("quiz")
   IFRS17CaseStudiesServer("cases")
 }
