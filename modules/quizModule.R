@@ -11,33 +11,36 @@ IFRS17QuizUI <- function(id) {
         class = "logo-wrapper d-flex justify-content-between align-items-center",
         # left-hand logo
         tags$img(
-          src   = "images/kenbright.png",
-          class = "logo logo-kenbright"
-        ),
-        # right-hand logo
-        tags$img(
           src   = "images/ira_logo_.png",
           class = "logo logo-afdb"
-        )
+        ),
+        # right-hand logo
+        # tags$img(
+        #   src   = "images/kenbright.png",
+        #   class = "logo logo-kenbright"
+        # )
       )
     )
   )
   tagList(
-    logo_bar,
+    # logo_bar,
+
     tags$div(
         class = "section-header",
-        h2("📘 IFRS 17 Quiz – Section 1: Introduction"),
-        p("Answer the following questions to test your understanding of IFRS 17 fundamentals.")
+        h2("📘 Module 1 – Introduction to IFRS 17", class = "section-title-top"),
+        h3("📙 Section 1 – Basics", class = "section-title"),
+        p("Answer the following questions to test your understanding of IFRS 17 fundamentals.",
+          class = "section-subtitle")
     ),
 
-    shinyWidgets::progressBar(
-        id = ns("quiz_progress"),
-        value = 0,
-        total = 19,
-        display_pct = TRUE,
-        striped = TRUE,
-        status = "success"
-        ),
+    # shinyWidgets::progressBar(
+    #     id = ns("quiz_progress"),
+    #     value = 0,
+    #     total = 19,
+    #     display_pct = TRUE,
+    #     striped = TRUE,
+    #     status = "success"
+    #     ),
 
     box(
         title = "Participant Information",
@@ -48,53 +51,52 @@ IFRS17QuizUI <- function(id) {
 
 
     box(
-      title = "1. What is the global date of Initial Application of IFRS 17 for insurers under supervision?",
+      title = "1. What is the global date of Initial Application of IFRS 17 for insurance companies under
+                National Insurance Commission's supervision?",
       status = "white", solidHeader = TRUE, width = 12,
       radioButtons(ns("q1"), label = NULL, choices = c(
-        "31 Dec 2023", "1 Jan 2022", "1 Jan 2023", "31 Dec 2021"))
+        "31 Dec 2023", "1 Jan 2022", "1 Jan 2023", "31 Dec 2021"), selected = character(0))
     ),
     
     box(
-      title = "2. Which method is NOT expected to be seen as an IFRS 17 application method?",
+      title = "2. When the National Insurance Commission (NIC) is supervising insurers, which of the
+                methods below does it NOT expect to see as an IFRS 17 application method?",
       status = "white", solidHeader = TRUE, width = 12,
-      radioButtons(ns("q2"), label = NULL, choices = c(
-        "Premium Allocation Approach", "General Allocation Approach", 
-        "General Measurement Model", "Variable Fee Approach"))
+      radioButtons(ns("q2"), label = NULL, choices = c("Premium Allocation Approach", "General Allocation Approach", "General Measurement Model", "Variable Fee Approach"), selected = character(0))
     ),
     
     box(
-      title = "3. Which Balance Sheet entry is NOT expected under IFRS 17?",
+      title = "3. Which Balance Sheet entry item below is NOT expected to be shown by an insurer while
+                implementing IFRS 17?",
       status = "white", solidHeader = TRUE, width = 12,
-      radioButtons(ns("q3"), label = NULL, choices = c(
-        "Insurance Contract Liabilities", "Premium Receivables from Policyholders",
-        "Reinsurance Contract Assets", "Insurance Contract Assets"))
+      radioButtons(ns("q3"), label = NULL, choices = c("Insurance Contract Liabilities", "Premium Receivables from Policyholders", "Reinsurance Contract Assets", "Insurance Contract Assets"), selected = character(0))
     ),
     
     box(
-      title = "4. Which Profit & Loss entry is NOT expected under IFRS 17?",
+      title = "4. Which Profit & Loss entry item below is NOT expected to be shown by an insurer while
+                implementing IFRS 17?",
       status = "white", solidHeader = TRUE, width = 12,
-      radioButtons(ns("q4"), label = NULL, choices = c(
-        "Gross Written Premium", "Management Expenses", 
-        "Commissions (Insurance Acquisition Costs)", "Incurred Claims"))
+      radioButtons(ns("q4"), label = NULL, choices = c("Gross Written Premium", "Management Expenses", "Commissions (Insurance Acquisition Costs)", "Incurred Claims"), selected = character(0))
     ),
     
     tags$div(
         class = "section-header",
-        h2("📙 IFRS 17 Quiz – Section 2: Concepts"),
+        h3("📙 Section 2: Concepts", class = "section-title"),
         p("Explore key terminologies, accounting treatments, and financial implications under IFRS 17.")
     ),
     box(
-    title = "5. What does the CSM reserve represent? (2 marks)",
+    title = "5. IFRS 17 requires that the insurer establishes a new reserve called Contractual Service
+            Margin (“CSM”). What does this reserve represent? (2 marks)",
     status = "white", solidHeader = TRUE, width = 12,
     radioButtons(ns("q5"), label = NULL,
-                choices = c("Unpaid Claims", "Unearned Profit", "Earned Premium", "Risk Adjustment"))
+                choices = c("Unpaid Claims", "Unearned Profit", "Earned Premium", "Risk Adjustment"), selected = character(0))
     ),   
 
     box(
-    title = "6. The Risk Adjustment margin can be considered as: (2 marks)",
+    title = "6. The Risk Adjustment for non-financial risks can be considered as (2 marks)",
     status = "white", solidHeader = TRUE, width = 12,
     radioButtons(ns("q6"), label = NULL,
-                choices = c("Part of Gross Written Premium", "Part of Shareholder Funds", "Part of Premium & Claims Reserves", "Part of Intangible Assets"))
+                choices = c("Part of Gross Written Premium", "Part of Shareholder Funds", "Part of Premium & Claims Reserves", "Part of Intangible Assets"), selected = character(0))
     ),
 
     box(
@@ -105,41 +107,46 @@ IFRS17QuizUI <- function(id) {
                     "Liability for Remaining Coverage & Risk Adjustment Margin",
                     "Outstanding Claim Reserves and Incurred But Not Reported Reserves & Risk Adjustment for Non-Financial Risks",
                     "Contractual Service Margin & Risk Adjustment Margin for Non-Financial Risks",
-                    "Premium & Risk Adjustment Margin for Non-Financial Risks"))
+                    "Premium & Risk Adjustment Margin for Non-Financial Risks"), selected = character(0))
     ),
 
     box(
-    title = "8. How is discounting of cashflows monitored? (2 marks)",
+    title = "8. How does IFRS 17 Standard expect the insurer and the National Insurance Commission
+            to monitor how the discounting of cashflows is being unwound as the payment date gets
+            closer? (2 marks)",
     status = "white", solidHeader = TRUE, width = 12,
     radioButtons(ns("q8"), label = NULL,
                 choices = c(
                     "Through Contractual Service Margin",
                     "Through Insurance Finance Expense",
                     "Through Risk Adjustment Margin for Non-Financial Risks",
-                    "Through Shareholder Funds"))
+                    "Through Shareholder Funds"), selected = character(0))
     ),
 
     box(
-    title = "9. Insurance Revenue can be compared to: (2 marks)",
+    title = "9. If all the policyholders fully pay their premium on time, the “Insurance Revenue” of a
+            General Insurance Company can be compared to (2 marks)",
     status = "white", solidHeader = TRUE, width = 12,
     radioButtons(ns("q9"), label = NULL,
                 choices = c(
-                    "Gross Written Premium", "Gross Earned Premium", "Net Earned Premium", "New Written Premium"))
+                    "Gross Written Premium", "Gross Earned Premium", "Net Earned Premium", "New Written Premium"), selected = character(0))
     ),
 
     box(
-    title = "10. Spirit of IFRS 17 on reinsurance contracts: (2 marks)",
+    title = "10. IFRS17 has a new view on how reinsurance contracts should be treated. The spirit of
+            the new approach is (2 marks)",
     status = "white", solidHeader = TRUE, width = 12,
     radioButtons(ns("q10"), label = NULL,
                 choices = c(
                     "Combine all reinsurance and policyholder cashflows to get a net position",
                     "Separate all reinsurance cashflows from policyholder cashflows and report the net cost of reinsurance separately",
                     "Combine only premium reinsurance cashflows and policyholder cashflows",
-                    "Combine all claims, acquisition costs and gross premium cashflows"))
+                    "Combine all claims, acquisition costs and gross premium cashflows"), selected = character(0))
     ),
 
     box(
-    title = "11. Time value of money and claim reserves (2 marks)",
+    title = "11. IFRS 17 has a made some changes to how claim reserves should be treated when it
+        comes to time value of money. The spirit of the new approach is (2 marks)",
     status = "white", solidHeader = TRUE, width = 12,
     radioButtons(ns("q11"), label = NULL,
                 choices = c(
@@ -147,153 +154,48 @@ IFRS17QuizUI <- function(id) {
                     "All claims expected to be paid after a year should be discounted and those expected to be paid in less than
                         one year should also be discounted.",
                     "All claims expected to be paid after a year should be discounted and those expected to be paid in less than one year (can be discounted or not depending on the choice of the insurer)",
-                    "All claims must be discounted regardless of expected payment date."))
+                    "All claims must be discounted regardless of expected payment date."), selected = character(0))
     ),
 
     box(
-    title = "12. Why should IFRS 17 be encouraged? (2 marks)",
+    title = "12. Some people say adoption of IFRS 17 should be encouraged by regulators, such as
+        National Insurance Commission (NIC), because it encourages CASH and CARRY by (2 marks)",
     status = "white", solidHeader = TRUE, width = 12,
     radioButtons(ns("q12"), label = NULL,
                 choices = c(
                     "Not capitalizing Premium Receivables in Balance Sheet",
                     "Ignoring Uncollected Premium in Income",
                     "It considers contracts only if claims have been paid",
-                    "It discounts claims"))
+                    "It discounts claims"), selected = character(0))
     ),
 
     box(
-    title = "13. How to identify discounting loss in P&L? (2 marks)",
+    title = "13. When an insurer discounts its liabilities at a higher rate than what it expecting to earn,
+        the National Insurance Commission (NIC) can easily detect this in the Profit & Loss Account
+        by looking at (2 marks)",
     status = "white", solidHeader = TRUE, width = 12,
     radioButtons(ns("q13"), label = NULL,
                 choices = c(
                     "Insurance Revenue", "Insurance Service Expense",
-                    "Net Financial Results", "Insurance Service Results"))
+                    "Net Financial Results", "Insurance Service Results"), selected = character(0))
     ),
 
     box(
-    title = "14. Under the General Measurement Model (GMM), the insurance contract liabilities or assets are composed of (2 marks)",
+    title = "14. Under the General Measurement Model (GMM), the insurance contract liabilities or
+        assets are composed of (2 marks)",
     status = "white", solidHeader = TRUE, width = 12,
     radioButtons(ns("q14"), label = NULL,
                 choices = c(
                     "Liability for Remaining Coverage & Risk Adjustment Margin",
                     "Liability for Remaining Coverage & Liability for Incurred Claims",
                     "Contractual Service Margin & Liability for Incurred Claims",
-                    "Premium, Outstanding Claim Reserves and Incurred But Not Reported Reserves"))
+                    "Premium, Outstanding Claim Reserves and Incurred But Not Reported Reserves"), selected = character(0))
     ),
-
-    tags$div(
-        class = "section-header",
-        h2("📗 IFRS 17 Quiz – Section 3: Practical – Wakanda Case Study"),
-        p("Answer the following questions based on this realistic scenario in Wakanda.")
-    ),
-    box(
-    title = "Case Study: GoodInsurer in Wakanda",
-    status = "white", solidHeader = TRUE, width = 12,
-    p("In the virtual world of Wakanda, there are two companies called GoodInsurer and BadInsurer. The government of
-    Wakanda has managed to keep interest rates at zero percent (0%) for all bonds. The people are flourishing and
-    very happy. The Currency of Wakanda is Wsh."),
-    p("GoodInsurer has launched a 5-Year endowment life insurance product which pays either a death benefit or a
-    maturity benefit of Wsh 1,000,000. The cost of the product is a premium of Wsh 400,000 per annum."),
-    p("The product is exclusively sold to retired footballers, athletes & other professionals who retire at age 40 years."),
-    p("The Government Actuary of Wakanda, Mr Challa, is mandated to sets the mortality rates and has said that each
-    policyholder who is age 40-45 years should contribute Wsh 200,000 per year to make the product sustainable."),
-    p("In addition, based on the risk appetite of the Shareholders of GoodInsurer, the Risk Adjustment for Non-Financial
-    was set at Wsh 50,000. The Board now feels that they are 85% sure that the cost per policyholder will not exceed
-    Wsh 250,000 per year (Wsh 200,000 as the cost of claims (as the estimate provided by the Government Actuary) +
-    Wsh 50,000 for the Risk Adjustment Margin to give the investors comfort that their profits are protected). They
-    expect to release Wsh 10,000 from the Risk Adjustment Margin every per year if there are no significant claims)."),
-    p("GoodInsurer uses internal staff to sell its product. The entire department earns a salary of Wsh 1 billion per year. In
-    addition, Management has told the Board that expenses that can be attributable to this product are Wsh 2 billion
-    while other overheads which cannot be attributable to this product are Wsh 3 billion."),
-    p("Based on the sales projection, each product will be allocated Wsh 50,000 in the first year only for acquisition costs
-    (commission payable) and Wsh 100,000 every year in attributable expenses."),
-    p("The Board asked what the theoretical non-attributable expenses of Wsh 3 billion would mean for the product and
-    they were informed that this would be Wsh 200,000 per product."),
-    p("GoodInsurer sold 10,000 policies in the first year and sent the usual end of year report to the Insurance Regulatory
-    Authority of Wakanda (IRAW).")
-    ),
-    br(),
-    p("Answer the following questions based on this case study:"),
-
-    box(
-    title = "15. What is the Contractual Service Margin (CSM) expected to be seen in the accounts for this product by the IRAW for GoodInsurer? (6 marks)",
-    status = "white", solidHeader = TRUE, width = 12,
-    textAreaInput(ns("q15"), label = NULL, rows = 2, placeholder = "e.g., Wsh 4B")
-    ),
-
-    box(
-    title = "16. If no new policy was sold after the first year, what is the CSM expected in the second year? (4 marks)",
-    status = "white", solidHeader = TRUE, width = 12,
-    textAreaInput(ns("q16"), label = NULL, rows = 2, placeholder = "eg., Wsh 3.2B")
-    ),
-
-    box(
-    title = "17. In Year 3, the shareholders of GoodInsurer feel that the footballers are buying very fast
-                cars and may have more claims. There is no evidence yet that the claims will increase. The
-                Board of GoodInsurer held a meeting and approved the Risk Adjustment to be held at a
-                higher confidence level of 95%. This means that the Original Risk Margin would have been
-                Wsh 100,000 instead of Wsh 50,000. Calculate the CSM for Year 3? (6 marks)",
-    status = "white", solidHeader = TRUE, width = 12,
-    textAreaInput(ns("q17"), label = NULL, rows = 2, placeholder = "e.g., Wsh 1.47B")
-    ),
-
-    box(
-    title = "18. What is the Insurance Finance Expenses expected in Year 1 to Year 5? (5 marks)",
-    status = "white", solidHeader = TRUE, width = 12,
-    textAreaInput(ns("q18"), label = NULL, rows = 2, placeholder = "e.g., Wsh 0")
-    ),
-
-    box(
-    title = "19. BadInsurer decided to undercut and sell the same product at 50% of the premium.
-                Calculate the Loss Component expected to be held on the insurer? (5 marks)",
-    status = "white", solidHeader = TRUE, width = 12,
-    textAreaInput(ns("q19"), label = NULL, rows = 2, placeholder = "e.g., Wsh 6B")
-    ),
-
-    box(
-    title = tags$div(
-        icon("comments"), "We Value Your Feedback",
-        style = "font-weight: 600; font-size: 18px;"
-    ),
-    status = "white", solidHeader = TRUE, width = 12,
-    div(style = "margin-bottom: 15px;",
-        sliderInput(
-            ns("feedback_rating"),
-            label = div(
-            "How would you rate your overall experience?",
-            tags$small("(0 = Very Poor, 100 = Excellent)", style = "color: #6c757d;")
-            ),
-            min = 0, max = 100, value = 50, step = 1, ticks = FALSE
-        )
-    ),
-    div(style = "margin-bottom: 15px;",
-        textAreaInput(
-            ns("feedback_comment"),
-            label = "Additional Comments (Optional):",
-            rows = 4,
-            placeholder = "We appreciate your thoughts and suggestions..."
-        )
-    ),
-    div(style = "text-align: right;",
-        actionButton(
-            ns("submit_feedback"),
-            label = "Submit Feedback",
-            icon = icon("paper-plane"),
-            class = "btn btn-success control-button-submit"
-        )
-    )
-    ),
-
 
     actionButton(ns("submit"), "Submit Quiz", icon = icon("check"), class = "btn-primary control-button-submit" ),
     br(), 
     br(),
-    uiOutput(ns("result")),
-    conditionalPanel(
-        condition = "output.allowCertificate === true",
-        helpText("🎉 Congratulations! You are eligible to download your certificate."),
-        downloadButton(ns("download_certificate"), "Download Certificate", icon = icon("download"))
-        )
+    uiOutput(ns("result"))
   )
 }
 
@@ -301,36 +203,20 @@ IFRS17QuizUI <- function(id) {
 IFRS17QuizServer <- function(id) {
   moduleServer(id, function(input, output, session) {
 
-    observeEvent(input$submit_feedback, {
-    showModal(modalDialog(
-        title = "Thank You!",
-        "Your feedback has been recorded. We appreciate your input.",
-        easyClose = TRUE
-    ))
-    })
-
-
-    cert_ready <- reactiveVal(FALSE)
     final_name <- reactiveVal("")
 
     score <- reactiveVal(0)
     section1_score <- reactiveVal(0)
     section2_score <- reactiveVal(0)
-    section3_score <- reactiveVal(0)
-    # Allow certificate download only if the score is above 60%
+    
+    # Feedback functions
     observeEvent(input$submit, {
-        if (input$participant_name == "") {
-        showModal(modalDialog("Please enter your Name to receive a certificate.", easyClose = TRUE))
-        return()
-        }
-
         final_name(input$participant_name)
 
 
         score(0)
         section1_score(0)
         section2_score(0)
-        section3_score(0)
         feedback <- list()
 
 
@@ -505,85 +391,9 @@ IFRS17QuizServer <- function(id) {
         }
         
 
-        # Section 3
-            # Q15
-        if (tolower(trimws(input$q15)) %in% c("wsh 4b", "4b", "wsh 4b/0", "4b/0")) {
-            score(score() + 1)
-            section3_score(section3_score() + 1)
-            feedback[[length(feedback) + 1]] <- "✅ Q15: Correct!"
-            feedbackSuccess("q15", "Correct!")
-        } else {
-            feedback[[length(feedback) + 1]] <- "❌ Q15: Correct answer is 'Wsh 4B'. This represents 10,000 policies × Wsh 400,000 profit margin (CSM) per policy."
-            feedbackDanger("q15", "Incorrect! Correct answer is 'Wsh 4B'. This represents 10,000 policies × Wsh 400,000 profit margin (CSM) per policy.")
-        }
-        
-
-            # Q16
-        if (tolower(trimws(input$q16)) %in% c("wsh 3.2b", "3.2b", "wsh 3.2b/0", "3.2b/0")) {
-            score(score() + 1)
-            section3_score(section3_score() + 1)
-            feedback[[length(feedback) + 1]] <- "✅ Q16: Correct!"
-            feedbackSuccess("q16", "Correct!")
-        } else if (tolower(trimws(input$q16)) %in% c("wsh 3.2b/0", "3.2b/0")) {
-            score(score() + 1)
-            section3_score(section3_score() + 1)
-        feedback[[length(feedback) + 1]] <- "✅ Q16: Correct! (Alternative answer)"
-        feedbackSuccess("q16", "Correct! (Alternative answer)")
-        } else if (tolower(trimws(input$q16)) %in% c("wsh 3.2b/0 all years", "3.2b/0 all years")) {
-        } else {
-        feedback[[length(feedback) + 1]] <- "❌ Q16: Correct answer is 'Wsh 3.2B'. The CSM is released evenly over 5 years = Wsh 800M/year, so Wsh 4B – Wsh 800M = Wsh 3.2B."
-        feedbackDanger("q16", "Incorrect! Correct answer is 'Wsh 3.2B'. The CSM is released evenly over 5 years = Wsh 800M/year, so Wsh 4B – Wsh 800M = Wsh 3.2B.")
-        }
-        
-
-            # Q17
-        if (tolower(trimws(input$q17)) %in% c("wsh 1.47b", "1.47b", "wsh 1.47b/0", "1.47b/0")) {
-            score(score() + 1)
-            section3_score(section3_score() + 1)
-        feedback[[length(feedback) + 1]] <- "✅ Q17: Correct!"
-        feedbackSuccess("q17", "Correct!")
-        } else if (tolower(trimws(input$q17)) %in% c("wsh 1.47b/0", "1.47b/0")) {
-            score(score() + 1)
-            section3_score(section3_score() + 1)
-        feedback[[length(feedback) + 1]] <- "✅ Q17: Correct! (Alternative answer)" 
-        } else {
-        feedback[[length(feedback) + 1]] <- "❌ Q17: Correct answer is 'Wsh 1.47B'. The higher Risk Adjustment (Wsh 100,000 – 50,000) reduces the CSM further."
-        feedbackDanger("q17", "Incorrect! Correct answer is 'Wsh 1.47B'. The higher Risk Adjustment (Wsh 100,000 – 50,000) reduces the CSM further.")   
-        }
-        
-            
-            # Q18   
-        if (tolower(trimws(input$q18)) %in% c("wsh 0", "0", "wsh 0 all years", "0 all years")) {
-            score(score() + 1)
-            section3_score(section3_score() + 1)
-        feedback[[length(feedback) + 1]] <- "✅ Q18: Correct!"
-        feedbackSuccess("q18", "Correct!")
-        } else if (tolower(trimws(input$q18)) %in% c("wsh 0/0 all years", "0/0 all years")) {
-            score(score() + 1)
-            section3_score(section3_score() + 1)
-        } else {
-        feedback[[length(feedback) + 1]] <- "❌ Q18: Correct answer is 'Wsh 0'. Since interest rates are 0%, there is no Insurance Finance Expense under IFRS 17."
-        feedbackDanger("q18", "Incorrect! Correct answer is 'Wsh 0'. Since interest rates are 0%, there is no Insurance Finance Expense under IFRS 17.") 
-        }
-
-
-            # Q19   
-        if (tolower(trimws(input$q19)) %in% c("wsh 6b", "6b", "wsh 6b/14b", "6b/14b")) {
-            score(score() + 1)
-            section3_score(section3_score() + 1)
-        feedback[[length(feedback) + 1]] <- "✅ Q19: Correct!"
-        feedbackSuccess("q19", "Correct!")
-        } else if (tolower(trimws(input$q19)) %in% c("wsh 6b/14b", "6b/14b")) {
-            score(score() + 1)
-            section3_score(section3_score() + 1)
-        } else {
-        feedback[[length(feedback) + 1]] <- "❌ Q19: Correct answer is 'Wsh 6B'. Selling at half the premium makes the fulfilment cash flows greater than consideration, leading to a loss component."
-        feedbackDanger("q19", "Incorrect! Correct answer is 'Wsh 6B'. Selling at half the premium makes the fulfilment cash flows greater than consideration, leading to a loss component.")
-        }
-
 
         output$result <- renderUI({
-        total_questions <- 19
+        total_questions <- 14
         percentage <- round((score() / total_questions) * 100, 1)
         name <- isolate(input$participant_name)
 
@@ -597,8 +407,7 @@ IFRS17QuizServer <- function(id) {
                 "<p style='font-size:17px;'><strong>👤 Participant:</strong> ", name, "</p>",
                 "<div style='display:flex; gap:40px; flex-wrap:wrap;'>",
                 "<div><p><strong>Section I Score:</strong><br>", section1_score(), " / 4</p></div>",
-                "<div><p><strong>Section II Score:</strong><br>", section2_score(), " / 9</p></div>",
-                "<div><p><strong>Section III Score:</strong><br>", section3_score(), " / 10</p></div>",
+                "<div><p><strong>Section II Score:</strong><br>", section2_score(), " / 10</p></div>",
                 "</div>",
                 "<hr style='border-top: 1px solid #dee2e6;'>",
                 "<p style='font-size:18px;'><strong>Total Score:</strong> ", score(), " / ", total_questions, "</p>",
@@ -622,41 +431,10 @@ IFRS17QuizServer <- function(id) {
     # Update progress bar at the end of all scoring
     updateProgressBar(session, id = session$ns("quiz_progress"), value = score())
 
-    # Enable certificate only if score ≥ 70%
-    if (score() >= 0.5 * 19) {
-        cert_ready(TRUE)
-    } else {
-        cert_ready(FALSE)
-    }
-
-    output$allowCertificate <- reactive({
-    cert_ready()
-    })
-
-
-    outputOptions(output, "allowCertificate", suspendWhenHidden = FALSE)
-
 
         
     })
 
-    output$download_certificate <- downloadHandler(
-        filename = function() {
-            paste0("IFRS17_Certificate_", Sys.Date(), ".pdf")
-        },
-        content = function(file) {
-            rmarkdown::render(
-            input = "modules/certificate_template.Rmd",  
-            output_file = file,
-            params = list(
-                name = final_name(),
-                score = score(),
-                total = 19
-            ),
-            envir = new.env(parent = globalenv())
-            )
-        }
-    )
 
   })
 }
