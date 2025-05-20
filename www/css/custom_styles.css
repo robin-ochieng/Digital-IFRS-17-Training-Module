@@ -214,6 +214,10 @@
   height: auto;
 }
 
+.print-title {
+  display: none;
+}
+
 .section-header {
   background-color: #ffffff;
   padding: 1rem;
@@ -462,6 +466,15 @@ h1 {
   margin-top: 30px;
 }
 
+.measurement-nav {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.quiz-nav {
+  text-align: center;
+  margin-top: 30px;
+}
 
 /* Style Measurement Models Module*/
 .model-outer-wrapper {
@@ -576,4 +589,11 @@ table.dataTable tr.shown {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
 
