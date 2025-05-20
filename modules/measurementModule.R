@@ -104,9 +104,11 @@ IFRS17MeasurementServer <- function(id) {
     )
   })
 
-    # expose the click
-    reactive(input$to_module_1)
+    # create a reactive for the “Next” click
+    to_module_1 <- reactive(input$to_module_1)
 
+    # return it so the app can observe it
+    to_module_1
 
   })
 }
