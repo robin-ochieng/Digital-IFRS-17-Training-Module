@@ -559,33 +559,6 @@ IFRS17QuizServer <- function(id) {
     # updateProgressBar(session, id = session$ns("quiz_progress"), value = score())     
     })
 
-
-
-    # observeEvent(input$print_certificate, {
-    #   runjs('
-    #     var cert = document.querySelector(".print-area");
-    #     if (!cert) {
-    #       alert("Nothing to print – make sure you have submitted the quiz first.");
-    #     } else {
-    #       var w = window.open("", "_blank", "width=800,height=600");
-    #       var html = [
-    #         "<!doctype html>",
-    #         "<html><head><title>Participation Certificate</title>",
-    #         "<style>body { margin:20px; font-family:Arial,sans-serif; }</style>",
-    #         "</head><body>", cert.outerHTML, "</body></html>"
-    #       ].join("");
-    #       w.document.write(html);
-    #       w.document.close();
-    #       w.onload = function() {
-    #         w.focus();
-    #         w.print();
-    #         // if you want the window to auto close after printing, uncomment:
-    #         // setTimeout(function(){ w.close(); }, 500);
-    #       };
-    #     }
-    #   ')
-    # })
-
     observeEvent(input$print_certificate, {
       runjs('
         var cert = document.querySelector(".print-area");
