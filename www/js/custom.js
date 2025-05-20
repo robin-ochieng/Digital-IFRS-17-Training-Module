@@ -43,3 +43,9 @@ $(function () {
     }
   });
 });
+
+// this runs when R calls session$sendCustomMessage("printPage",…)
+Shiny.addCustomMessageHandler("printPage", function(message) {
+  window.print();
+});
+
