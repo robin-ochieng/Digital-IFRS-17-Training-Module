@@ -111,7 +111,7 @@ IFRS17CaseStudiesUI <- function(id) {
                 "Grouping is critical in IFRS 17 as it influences how contracts are measured and reported. Profitability segmentation ensures that losses are recognized early and profits are allocated over time."
             )
         )
-    ))
+    )) 
     
  
   )
@@ -264,6 +264,7 @@ IFRS17CaseStudiesServer <- function(id) {
         rownames = FALSE
       )
     })
+
 
   })
 }
