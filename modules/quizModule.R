@@ -195,14 +195,23 @@ IFRS17QuizUI <- function(id) {
     actionButton(ns("submit"), "Submit Quiz", icon = icon("check"), class = "btn-primary control-button-submit" ),
     br(), 
     br(),
-    uiOutput(ns("result"))
+    uiOutput(ns("result")),
+    div(
+      class = "quiz-nav",
+      actionButton(
+          ns("to_case_studies"),
+          label = tagList(icon("arrow-right"), "Next: Case Studies"),
+          class = "control-button-tavnav"
+      )
+    )   
   )
 }
 
 # ---- Server ----
 IFRS17QuizServer <- function(id) {
   moduleServer(id, function(input, output, session) {
-
+    # bring ns into scope
+    ns <- session$ns
     final_name <- reactiveVal("")
 
     score <- reactiveVal(0)
@@ -211,6 +220,46 @@ IFRS17QuizServer <- function(id) {
     
     # Feedback functions
     observeEvent(input$submit, {
+        removeModal()
+        # 1. List out all your question input IDs
+        question_ids <- paste0("q", 1:14)
+        
+        # 2. Find which ones are missing
+        missing <- vapply(question_ids, function(qid) {
+          val <- input[[qid]]
+          is.null(val) || length(val) == 0 || val == ""
+        }, logical(1))
+        
+        # 3. If any are missing, show a modal and abort
+        if (any(missing)) {
+          showModal(modalDialog(
+            title   = "Please answer all questions",
+            HTML(sprintf(
+              "You have %d unanswered question(s): %s.<br><br>Please go back and select your answers before submitting.",
+              sum(missing),
+              paste(which(missing), collapse = ", ")
+            )),
+            easyClose = TRUE,
+            footer    = modalButton("OK")
+          ))
+          return()
+        }
+        
+        # 4. (Optional) also check name
+        if (is.null(input$participant_name) || input$participant_name == "") {
+          showModal(modalDialog(
+            title   = "Participant Name Required",
+            "Please enter your name before you submit the quiz.",
+            easyClose = TRUE,
+            footer    = modalButton("OK")
+          ))
+          return()
+        }
+        
+        # ———————————
+        # 5. All answered: clear any existing modal, then run your scoring code
+        removeModal()
+
         final_name(input$participant_name)
 
 
@@ -392,49 +441,192 @@ IFRS17QuizServer <- function(id) {
         
 
 
-        output$result <- renderUI({
-        total_questions <- 14
-        percentage <- round((score() / total_questions) * 100, 1)
-        name <- isolate(input$participant_name)
+    output$result <- renderUI({
+      total_questions <- 14
+      percentage       <- round((score() / total_questions) * 100, 1)
+      name             <- isolate(input$participant_name)
+      color            <- if (percentage >= 70) "#198754" else "#dc3545"
 
-        color <- if (percentage >= 70) "#198754" else "#dc3545"
+      tagList(
+        div(
+          class = "print-area",
 
-        tagList(
-            div(style = "background-color:#ffffff; padding:25px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.08); font-family:Arial, sans-serif;",
-            h3("📊 Results Summary", style = "color:#0d6efd; font-weight:600; margin-bottom:20px;"),
-            
+          # ——— Certificate Header ———
+          div(
+            class = "print-title",
+            style = "
+              text-align:center; 
+              padding: 20px;
+              border-bottom: 3px solid #0d6efd;
+              background-color: #f8f9fa;
+              margin-bottom:20px;",
+            img(src = "images/ira_logo_.png", style = "height:60px; margin-bottom:10px;"),
+            # certificate title
+            h1("Certificate of Achievement",
+              style = "
+                font-family: 'Nunito', sans-serif;
+                font-size: 32px;
+                margin-bottom: 5px;
+                color: #0d6efd;
+              "),
+                # decorative subtitle
+            h4("has successfully completed the IFRS 17 Fundamentals Quiz",
+              style = "
+                font-family: 'Nunito', sans-serif;
+                font-weight: 400;
+                font-style: italic;
+                margin-top: 0;
+                margin-bottom: 20px;
+                color: #343a40;
+              "),
+              # recipient name
+          h2(isolate(input$participant_name),
+            style = "
+              font-family: 'Nunito', sans-serif;
+              font-size: 28px;
+              margin: 0;
+              color: #198754;
+            "),
+            p(format(Sys.Date(), "%B %d, %Y"), 
+            style = "
+            font-size:14px;
+            margin-top: 10px;
+            color: #6c757d;
+            ")
+          ),  # ← comma!
+
+          # ——— Results Summary Card ———
+          div(
+            class = "print-summary",
+            style = "
+              background-color:rgb(172, 167, 167);
+              padding: 25px;
+              border-radius: 10px;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+              font-family: Arial, sans-serif;
+            ",
+            h3(
+              "📊 Results Summary",
+              style = "color:#0d6efd; font-weight:600; margin-bottom:20px;"
+            ),
+
             HTML(paste0(
-                "<p style='font-size:17px;'><strong>👤 Participant:</strong> ", name, "</p>",
-                "<div style='display:flex; gap:40px; flex-wrap:wrap;'>",
+              "<p style='font-size:17px;'><strong>👤 Participant:</strong> ", name, "</p>",
+              "<div style='display:flex; gap:40px; flex-wrap:wrap;'>",
                 "<div><p><strong>Section I Score:</strong><br>", section1_score(), " / 4</p></div>",
                 "<div><p><strong>Section II Score:</strong><br>", section2_score(), " / 10</p></div>",
-                "</div>",
-                "<hr style='border-top: 1px solid #dee2e6;'>",
-                "<p style='font-size:18px;'><strong>Total Score:</strong> ", score(), " / ", total_questions, "</p>",
-                "<p style='font-size:18px;'><strong>Percentage Score:</strong> <span style='color:", color, "; font-weight:600;'>", percentage, "%</span></p>"
+              "</div>",
+              "<hr style='border-top:1px solid #dee2e6;'>",
+              "<p style='font-size:18px;'><strong>Total Score:</strong> ", score(), " / ", total_questions, "</p>",
+              "<p style='font-size:18px;'><strong>Percentage Score:</strong> <span style='color:", color, "; font-weight:600;'>", percentage, "%</span></p>"
             )),
-            
-            div(style = "margin-top:25px;",
-                h4("📘 Detailed Feedback", style = "margin-bottom:15px; color:#343a40;"),
-                tags$ul(
-                lapply(feedback, function(msg) {
-                    tags$li(style = "margin-bottom:8px;", HTML(msg))
-                })
-                )
-            )
-            )
-        )
-        })
 
+            # ——— Detailed Feedback ———
+            div(
+              style = "margin-top:25px;",
+              h4(
+                "📘 Detailed Feedback",
+                style = "margin-bottom:15px; color:#343a40;"
+              ),
+              tags$ul(
+                lapply(feedback, function(msg) {
+                  tags$li(style = "margin-bottom:8px;", HTML(msg))
+                })
+              )
+            ),  # ← comma!
+
+            # ——— Print Button ———
+            div(
+              style = "text-align:center; margin-top:30px;",
+              actionButton(
+                ns("print_certificate"),
+                "Print Results as PDF",
+                icon  = icon("print"),
+                class = "control-button-tavnav no-print"
+              )
+            )
+
+          )  # closes print-summary
+
+        )  # closes print-area
+
+      )  # closes tagList
+
+    })  # closes renderUI
 
 
     # Update progress bar at the end of all scoring
-    updateProgressBar(session, id = session$ns("quiz_progress"), value = score())
-
-
-        
+    # updateProgressBar(session, id = session$ns("quiz_progress"), value = score())     
     })
 
+
+
+    # observeEvent(input$print_certificate, {
+    #   runjs('
+    #     var cert = document.querySelector(".print-area");
+    #     if (!cert) {
+    #       alert("Nothing to print – make sure you have submitted the quiz first.");
+    #     } else {
+    #       var w = window.open("", "_blank", "width=800,height=600");
+    #       var html = [
+    #         "<!doctype html>",
+    #         "<html><head><title>Participation Certificate</title>",
+    #         "<style>body { margin:20px; font-family:Arial,sans-serif; }</style>",
+    #         "</head><body>", cert.outerHTML, "</body></html>"
+    #       ].join("");
+    #       w.document.write(html);
+    #       w.document.close();
+    #       w.onload = function() {
+    #         w.focus();
+    #         w.print();
+    #         // if you want the window to auto close after printing, uncomment:
+    #         // setTimeout(function(){ w.close(); }, 500);
+    #       };
+    #     }
+    #   ')
+    # })
+
+    observeEvent(input$print_certificate, {
+      runjs('
+        var cert = document.querySelector(".print-area");
+        if (!cert) {
+          alert("Nothing to print – make sure you have submitted the quiz first.");
+        } else {
+          // open a blank window
+          var w = window.open("", "_blank", "width=800,height=600");
+          // build a print-only style to hide .no-print
+          var head = `
+            <head>
+              <title>Participation Certificate</title>
+              <style>
+                body { margin:20px; font-family:Arial,sans-serif; }
+                @media print { .no-print { display: none; } }
+              </style>
+            </head>`;
+          // grab the certificate HTML
+          var body = "<body>" + cert.outerHTML +
+                    // wrap your button in a no-print div
+                    "<div class=\\"no-print\\" style=\\"text-align:center; margin-top:30px;\\">" +
+                      "<button onclick=\\"window.print()\\">Print Certificate as PDF</button>" +
+                    "</div></body>";
+          // write it all
+          w.document.write("<!doctype html><html>" + head + body + "</html>");
+          w.document.close();
+          w.onload = function() {
+            w.focus();
+            w.print();
+          };
+        }
+      ')
+    })
+
+   
+
+    # create a reactive for the “Next” click
+    to_case_studies <- reactive(input$to_case_studies)
+
+    # return it so the app can observe it
+    to_case_studies
 
   })
 }
