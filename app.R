@@ -67,6 +67,7 @@ ui <- dashboardPage(
   ), 
   dashboardBody(
     shinyFeedback::useShinyFeedback(),
+    shinyjs::useShinyjs(),
     tags$head(
       includeCSS("www/css/custom_styles.css"),
       tags$script(src = "js/custom.js"),
@@ -120,8 +121,19 @@ server <- function(input, output, session) {
     )
   })
 
+  # This captures the Quiz navigation event
+  quiz_nav <- IFRS17QuizServer("quiz")
   
-  IFRS17QuizServer("quiz")
+  # When the user clicks “Next: Case Studies”, jump the sidebar
+  observeEvent(quiz_nav(), {
+    updateTabItems(
+      session,            # THIS session is the **root** session
+      inputId   = "sidebar",
+      selected  = "cases"
+    )
+  })  
+
+  # This captures the Case Studies navigation event 
   IFRS17CaseStudiesServer("cases")
 }
 
