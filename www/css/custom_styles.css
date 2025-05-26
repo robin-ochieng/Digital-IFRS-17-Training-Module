@@ -95,19 +95,84 @@
       padding-top: 5px; /* Space after the vertical line */
      }
 
-  .menu-container {
-      display: block; /* Align items to the start of the container */
-      position: fixed; /* Ensure the container is positioned correctly */    
-      top: 200px;  /* Aligns to the top of the viewport */
-      left: 0; 
-      width: 260px; /* Match the width of the sidebar-footer */
-      padding: 10px 5px; /* Add padding to give some space around the title */
-      background-color: #fff; /* Light background color to distinguish the title area */
-      border-radius: 8px; /* Optional: Add rounded corners for a modern look */
-      font-family: 'Nunito', sans-serif;
-      z-index: 1050; /* Ensure the container is above the sidebar */
-  }
+    /* ──────────────────────────────────────────────────────────────
+      Sidebar container: fixed under logos, scrollable, full height
+      ────────────────────────────────────────────────────────────── */
+    .menu-container {
+      position: fixed !important;
+      top: 150px;              /* adjust to match your .logos height */
+      bottom: 0 !important;
+      left: 0;                 /* ensure flush to the left edge */
+      width: 260px;            /* match your dashboardSidebar width */
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      box-sizing: border-box;
+    }
 
+    /* ──────────────────────────────────────────────────────────────
+      All menu links fill 100% width, no horizontal overflow
+      ────────────────────────────────────────────────────────────── */
+    .menu-container .nav-link {
+      display: flex !important;
+      align-items: center !important;
+      width: 100% !important;
+      box-sizing: border-box;
+      padding: 6px 12px !important;   /* vertical & horizontal padding */
+      line-height: 1.2 !important;
+      white-space: nowrap;            /* truncate long text */
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ──────────────────────────────────────────────────────────────
+      Nested submenu (treeview) items: smaller indent, wrap if needed
+      ────────────────────────────────────────────────────────────── */
+    .menu-container .nav-treeview {
+      padding-left: 0 !important;
+      margin-left: 0 !important;
+    }
+
+    .menu-container .nav-treeview .nav-link {
+      font-size: 10px !important;  /* smaller font for sub-items */
+      padding-left: 24px !important;  /* indent for sub-items */
+      white-space: normal !important;  /* allow wrapping on multiple lines */
+      word-break: break-word !important;
+    }
+
+    .menu-container .nav-treeview .nav-link p {
+      font-size: 10px !important;  /* smaller font for sub-items */
+      margin: 0 !important;
+      line-height: 1.2;        
+    }
+
+    /* ──────────────────────────────────────────────────────────────
+      Icon spacing: consistent box, gap, vertical centering
+      ────────────────────────────────────────────────────────────── */
+    .menu-container .nav-icon {
+      flex: 0 0 1.25rem !important;    /* reserve horizontal space */
+      margin-right: 0.5rem !important;
+      text-align: center;
+      font-size: 1.1em !important;     /* adjust icon size if needed */
+    }
+
+    /* ──────────────────────────────────────────────────────────────
+      Active link styling
+      ────────────────────────────────────────────────────────────── */
+    .menu-container .nav-link.active {
+      background-color: #9FBD59 !important;
+      color: #fff !important;
+      border-radius: 8px;
+      border-left: 3px solid #AF851D !important;
+    }
+
+    /* ──────────────────────────────────────────────────────────────
+      Text styling (optional overrides)
+      ────────────────────────────────────────────────────────────── */
+    .menu-container .nav-link p {
+      margin: 0 !important;
+      font-size: 0.9rem !important;    /* adjust text size */
+      font-weight: bold !important;
+    }
 
 
   /* Style the clock container */
@@ -139,31 +204,7 @@
     border-radius: 10px;
 }
 
-/* Target the menu item text in the sidebar */
-.nav-sidebar .nav-item > .nav-link > p {
-  font-size: 12px !important;
-  font-weight: bold !important; /* Make the text bold */
-}
 
-/* Make the active tab have a gray background and black text */
-.nav-sidebar .nav-item > .nav-link.active {
-  background-color: #9FBD59 !important; /* or another shade of gray */
-  color: #ffff !important;
-  border-radius: 8px;
-  border-left: 3px solid #AF851D;
-}
-
-/* custom_styles.css */
-.sidebar-footer {
-  position: absolute;
-  bottom: 0px;
-  left: 25px;  
-  padding: 20px 10px 10px 10px; 
-}
-
-.sidebar-footer img {
-  height: 50px;
-}
 
 /* Target the menu item icon in the sidebar */
 /* custom_styles.css */
@@ -176,7 +217,7 @@
 
 /* custom_styles.css */
 .ira-logo {
-  height: 150px;
+  height: 80px;
 }
 
 .logos img {
@@ -595,5 +636,7 @@ table.dataTable tr.shown {
     display: none !important;
   }
 }
+
+
 
 
