@@ -1,20 +1,293 @@
 # This module is for the IFRS 17 module 7
 IFRS17Module7UI <- function(id) {
   ns <- NS(id)
-    tagList(
+  tagList(
     div(
-      class = "module-intro-text",
-      h2("📘 Module 7: Discounting CSM and Risk Adjustment"),
-      h3("1. Discounting"),
-      p("This sub-module introduces the fundamental concept of discounting under IFRS 17, emphasizing the importance of adjusting future cash flows to reflect the time value of money. Discounting ensures that the value of expected future payments and receipts are expressed in today’s terms, allowing for accurate liability measurement. The module explores key principles such as the use of appropriate discount rates, the distinction between bottom-up and top-down approaches, and the role of liquidity, risk, and market consistency in selecting these rates. Understanding these concepts is essential for accurately valuing insurance contracts and complying with IFRS 17 requirements."),
-      tags$hr(),       
-      h3("2. Contractual Service Margin (CSM)"),
-      p("The Contractual Service Margin (CSM) is a fundamental concept in IFRS 17 that represents the unearned profit an insurer expects to recognize as it provides insurance coverage over time. This module provides a comprehensive overview of how the CSM is calculated, adjusted, and released. It examines how CSM prevents the upfront recognition of future profits and how it interacts with the Liability for Remaining Coverage (LRC). The module also covers scenarios where a group of contracts becomes onerous—causing the CSM to be set to nil and a loss component to be established—and how reversals of such losses may occur. Understanding the CSM is crucial for ensuring appropriate profit recognition and financial statement transparency under IFRS 17."),
-      tags$hr(), 
-      h3("3. Risk Adjustment"),
-      p("Under IFRS 17, one of the key components in measuring insurance contract liabilities is the Risk Adjustment for Non-Financial Risk (RA). This adjustment represents the compensation an insurer requires for bearing the uncertainty about the amount and timing of cash flows that arise from non-financial risks. While the fulfilment cash flows reflect expected values, the risk adjustment accounts for the inherent variability and uncertainty in those expectations. It ensures that liabilities are not just a neutral best estimate but also include a margin for risk—aligned with the insurer's own risk appetite and risk-bearing capacity.")
+      class = "section-header",
+      h2("📘 Module 7: Discounting CSM and Risk Adjustment", class = "section-title-top")
+    ),
+   div(class = "module-section",  
+        h3("📖 Introduction"),
+        p("This module provides an overview of Discounting, Contractual Service Margin (CSM) and Risk Adjustment (RA) under IFRS 17.")
+     ),
+    div(class = "module-section",  
+      h3("📘 Introduction"),
+      p("On initial recognition, an entity must measure a group of insurance contracts as the total of:"),
+      tags$ul(
+        tags$li("the fulfilment cash flows (\"FCF\"), which comprise:"),
+        tags$ol(
+          tags$li("estimates of future cash flows;"),
+          tags$li("an adjustment to reflect the time value of money (\"TVM\") and the financial risks associated with the future cash flows, and a risk adjustment for non-financial risk."),
+          tags$li("the contractual service margin (\"CSM\").")
+        )
+      ),
+      img(src = "images/fulfilmentCashFlows.png", alt = "Fulfilment Cash Flows", class = "module-image")
+    ),
+    div(class = "module-section",
+      h3("💡 Discounting"),
+      p("This sub-module introduces the fundamental concept of discounting under IFRS 17, emphasizing the importance of adjusting future cash flows to reflect the time value of money. Discounting ensures that the value of expected future payments and receipts are expressed in today’s terms, allowing for accurate liability measurement."),
+      p("Under IFRS 17 standards Paragraph 36 covers discounting as a part of fulfilment cash flow and Paragraph 38–39 covers the characteristics discounting must reflect, and paragraph 44(b) and 47 cover the interest accretion on the CSM using locked-in rates while appendix B72 to B85 cover detailed guidance on determining discount rates and yield curves.")
+    ),
+    div(class = "module-section",
+      h4(span(style = "color: #97BC39;", "What is Discounting?")),
+      p("Discounting is the process of converting future cash flows into present values. It's based on the idea that money today is worth more than money in the future due to the time value of money."),
+      p("The discount rate should reflect characteristics like liquidity, inflation, and dependency on underlying items.")
+    ),
+    div(class = "module-section",
+      h4(span(style = "color: #97BC39;", "Why Are Future Cash Flows Discounted in IFRS 17?")),
+      p("To reflect the time value of money and financial risks not already captured in the estimates."),
+      h5(span(style = "color: #AF851D;", "Purpose:")),
+      tags$ul(
+        tags$li("Ensure liabilities are shown realistically on the balance sheet."),
+        tags$li("Helps compare cash flows that occur at different times."),
+        tags$li("Adjusts for liquidity and financial risk.")
+      )
+    ),
+    div(class = "module-section",
+      h3("📉 Discounting Approaches"),
+      p("IFRS 17 has provided two approaches for the determination of discount rates for insurers as follows:"),
+
+      # Bottom-Up Approach
+      tags$h4(span(style = "color:#97BC39;", "a) Bottom-Up Approach")),
+      tags$strong("How It Works:"),
+      tags$ol(
+        tags$li("Start with a risk-free yield curve (e.g., government bonds)"),
+        tags$li("Add a liquidity premium if the insurance contracts are illiquid")
+      ),
+
+      # Top-Down Approach
+      tags$h4(span(style = "color:#97BC39;", "b) Top-down Approach")),
+      tags$strong("How It Works:"),
+      tags$ol(
+        tags$li("Start with the total yield of a reference asset portfolio"),
+        tags$li("Eliminates components not relevant to insurance (e.g., credit risk, other market risks)")
+      ),
+
+      p("IFRS 17 requires that discount rates exclude market variables that don’t affect the cash flows of the insurance contract, even if these variables are reflected in market prices. This ensures accuracy in aligning economic reality with liability measurement."),
+      img(src = "images/discountingApproaches.png", alt = "Discounting Approaches", class = "module-image")
+    ),
+    div(class = "module-section",
+      h3("📉 Key Discounting Concepts in IFRS 17"),
+      tags$table(class = "table key-table", style = "width:100%",
+        tags$thead(
+          tags$tr(
+            tags$th("Concept"),
+            tags$th("Explanation")
+          )
+        ),
+        tags$tbody(
+          tags$tr(
+            tags$td("Time Value of Money"),
+            tags$td("Money today is more valuable than money tomorrow.")
+          ),
+          tags$tr(
+            tags$td("Discount Rate"),
+            tags$td("The rate used to bring future cash flows to the present value.")
+          ),
+          tags$tr(
+            tags$td("Bottom-Up Approach"),
+            tags$td("Start with a risk-free rate, then adjust for liquidity.")
+          ),
+          tags$tr(
+            tags$td("Top-Down Approach"),
+            tags$td("Start with a portfolio yield, then remove credit and other risks not relevant to the insurance contract.")
+          ),
+          tags$tr(
+            tags$td("Liquidity Premium"),
+            tags$td("Adjustment made to a liquid risk-free yield curve to reflect differences between liquidity characteristics of the financial instruments that underlie the risk-free rates and insurance contracts.")
+          ),
+          tags$tr(
+            tags$td("Market Consistency"),
+            tags$td("Use observable market data only if it reflects the characteristics of the liability.")
+          )
+        )
+      )
     ),
 
+    div(class = "module-section",
+      h3("📉 Contractual Service Margin"),
+      p("This sub-module provides a comprehensive overview of how the CSM is calculated, adjusted, and released."),
+      p("Under IFRS 17, the following tables show the paragraphs and appendix that cover CSM:"),
+      tags$table(class = "table key-table", style = "width:100%",
+        tags$thead(
+          tags$tr(
+            tags$th("Paragraph"),
+            tags$th("What It Covers")
+          )
+        ),
+        tags$tbody(
+          tags$tr(
+            tags$td("17.38–39"),
+            tags$td("Fulfilment cash flows (FCF), basis for CSM")
+          ),
+          tags$tr(
+            tags$td("17.43"),
+            tags$td("No gain at initial recognition — CSM absorbs positive FCF")
+          ),
+          tags$tr(
+            tags$td("17.44–45"),
+            tags$td("CSM changes: interest, release, updates to cash flows")
+          ),
+          tags$tr(
+            tags$td("17.46"),
+            tags$td("Onerous contracts: CSM set to zero, loss component created")
+          ),
+          tags$tr(
+            tags$td("17.47"),
+            tags$td("Use of locked-in discount rate for interest accretion")
+          ),
+          tags$tr(
+            tags$td("B94–B96"),
+            tags$td("Allocation of CSM to coverage periods")
+          ),
+          tags$tr(
+            tags$td("B97–B100"),
+            tags$td("Adjustments for changes in estimates or derecognition")
+          )
+        )
+      )
+    ),
+
+  div(class = "module-section",
+    h3("What is the Contractual Service Margin (CSM)?"),
+    p("CSM represents the unearned profit an insurance company expects to earn as it provides coverage over the life of an insurance contract. It is part of the Liability for Remaining Coverage (LRC)."),
+    p(tags$b("You can think of the CSM like this:"), style = "margin-top:15px;"),
+    p(em("Imagine selling a 4-year gym membership today. The full fee is paid upfront, but you haven’t provided the service yet. The profit you’re expecting to make is spread over the 4 years – that’s your CSM."))
+  ),
+
+  div(class = "module-section",
+    h3("CSM at initial recognition"),
+    p("When a group of insurance contracts is first recognised (usually at the point of inception), IFRS 17 requires calculating a “Contractual Service Margin (CSM)” if the contract is expected to be profitable."),
+    img(src = "images/csmatInitialRecognition.png", alt = "CSM at Initial Recognition", class = "module-image"),
+    p(em("If the result is positive → this becomes the initial CSM (unearned profit). If the result is negative → the contract is onerous and no CSM is recognised. Instead, a loss component is created."))
+  ),
+
+  div(class = "module-section",
+    h4(style = "color:#94B43B; font-weight:600;", "CSM at Subsequent Measurement"),
+    p("Once the initial CSM is set up, it’s not static. It gets adjusted over time to reflect:"),
+    tags$ol(
+      tags$li(
+        tags$b("Interest Accretion:"), 
+        " CSM increases over time using the discount rate at initial recognition."
+      ),
+      tags$li(
+        tags$b("Profit Release (reduction):"),
+        " CSM is released as revenue as the insurer provides coverage. Usually done evenly unless another pattern better reflects the service."
+      ),
+      tags$li(
+        tags$b("Adjustments for Changes in Estimates:"),
+        " If assumptions about future cash flows change (e.g. fewer claims expected), the CSM is adjusted, but only if the contract is not onerous."
+      ),
+      tags$li(
+        tags$b("Onerous Contracts:"),
+        " If the group becomes loss-making: CSM is set to zero. A loss component is recognised for the shortfall."
+      ),
+      p("A loss component can be reversed in subsequent periods if there are favorable changes in the fulfilment cash flows related to future service, indicating that the group of contracts is no longer onerous.")
+    )
+  ),
+
+    div(class = "module-section",
+      h3("Risk Adjustment"),
+      p("This sub-module looks at Risk Adjustment, which is one of the key components in measuring insurance contract liabilities."),
+      p("IFRS 17 under paragraphs 37 covers risk adjustment as part of fulfilment cash flows and Paragraph 44 covers the disclosure of method and confidence level while appendix B86 to B92 covers the principles, methods and factors affecting risk adjustment."),
+      p(
+        tags$em(style = "color:#b6a600; font-weight:600;", "What is Risk Adjustment in IFRS 17?")
+      ),
+      p("The Risk Adjustment for non-financial risk represents the compensation an insurer requires for the uncertainty about the amount and timing of future cash flows from insurance contracts — due to non-financial risks like mortality, morbidity, lapse, and expense risks."),
+      p("While the fulfilment cash flows reflect expected values, the risk adjustment accounts for the inherent variability and uncertainty in those expectations. It ensures that liabilities are not just a neutral best estimate but also include a margin for risk—aligned with the insurer’s own risk appetite and risk-bearing capacity.")
+    ), 
+
+    div(class = "module-section",
+      h4(style = "color:#94B43B; font-weight:600;", "Factors That Influence the Risk Adjustment"),
+      p("Under IFRS 17, the Risk Adjustment (RA) is influenced by the degree of uncertainty in non-financial risks. These include:"),
+
+      # 1. Degree of Uncertainty
+      tags$p(tags$strong(style = "color:#73A500;", "1. Degree of Uncertainty")),
+      p("More uncertainty is equal to Higher RA"),
+      p("This includes uncertainty about:"),
+      tags$ul(
+        tags$li("Timing of cash flows"),
+        tags$li("Amount of future claims"),
+        tags$li("Claims development")
+      ),
+
+      # 2. Type of Risk
+      tags$p(tags$strong(style = "color:#73A500;", "2. Type of Risk")),
+      p("Different non-financial risks contribute differently:"),
+      tags$ul(
+        tags$li("Morbidity/Mortality Risk: Variability in health/death rates."),
+        tags$li("Lapse Risk: Uncertainty in policyholder behavior."),
+        tags$li("Expense Risk: Changes in administration costs.")
+      ),
+
+      # 3. Contract Duration
+      tags$p(tags$strong(style = "color:#73A500;", "3. Contract Duration")),
+      p("Longer duration = Higher RA"),
+      tags$em("Why? Because longer exposure → more uncertainty → more compensation needed."),
+
+      # 4. Quality of Data / Knowledge of Risks
+      tags$p(tags$strong(style = "color:#73A500;", "4. Quality of Data / Knowledge of Risks")),
+      p("If the insurer has limited data or is less confident about assumptions, the RA is higher."),
+      tags$em("Less knowledge = higher compensation required for bearing risk."),
+
+      # 5. Diversification and Risk Pooling
+      tags$p(tags$strong(style = "color:#73A500;", "5. Diversification and Risk Pooling")),
+      p("A larger and more diversified portfolio tends to have lower RA per contract."),
+      p("Risks that can be pooled or offset across contracts reduce overall uncertainty."),
+
+      # 6. Reinsurance
+      tags$p(tags$strong(style = "color:#73A500;", "6. Reinsurance")),
+      p("If risk is ceded to a reinsurer, the RA for the cedant is lower."),
+      p("The reinsurer still carries RA for their accepted portion."),
+    
+        #7. Risk Appetite and Confidence Level
+      tags$p(tags$strong(style = "color:#73A500;", "7. Risk Appetite and Confidence Level")),
+      p("A more risk-averse insurer will choose a higher confidence level, leading to a higher RA."),
+      img(src = "images/riskAdjustmentFactors.png", alt = "Risk Adjustment Factors", class = "module-image")
+    ),
+
+    div(class = "module-section",
+      h4(style = "color:#94B43B; font-weight:600;", "Methods of determining Risk Adjustment"),
+      p("IFRS 17 does not prescribe a specific method — but it requires the RA to:"),
+      tags$ul(
+        tags$li("Reflect compensation for non-financial risk uncertainty"),
+        tags$li("Be explicitly and separately disclosed"),
+        tags$li("Be consistent with how the entity would assess its own risk preferences")
+      ),
+      img(src = "images/riskAdjustmentMethods.png", alt = "Risk Adjustment Methods", class = "module-image")
+      ),
+    div(class = "module-section",
+      h3("The 3 most common approaches:"),
+      
+      tags$ol(
+        tags$li(
+          tags$span(style = "font-style:italic; font-weight:600;", 
+                    "Confidence Level Approach (Quantile Method)"),
+          p("This method sets the RA so that the present value of future cash flows covers obligations with a given confidence level (e.g., 75%, 90%).")
+        ),
+        
+        tags$li(
+          tags$span(style = "font-style:italic; font-weight:600;", 
+                    "Cost of Capital Method"),
+          p("Calculates RA based on the cost of holding capital to support non-financial risks over time."),
+          tags$div(
+            tags$strong("Key Components:"),
+            tags$ul(
+              tags$li("Required capital amount (e.g. 99.5% VaR)"),
+              tags$li("Holding period (e.g. contract lifetime)"),
+              tags$li("Cost of capital rate (e.g. 6%)")
+            )
+          )
+        ),
+        
+        tags$li(
+          tags$span(style = "font-style:italic; font-weight:600;", 
+                    "Conditional Tail Expectation (CTE)"),
+          p("Also referred to as the tail value at risk; it reflects the average of all worse outcomes beyond a certain threshold.")
+        ),
+        img(src = "images/riskAdjustmentApproaches.jpeg", alt = "Risk Adjustment Approaches", class = "module-image")
+      )
+    ),
 
     box(
         title = "Answer the following questions to test your understanding of Discounting, CSM & Risk Adjustment.",
@@ -77,20 +350,32 @@ IFRS17Module7UI <- function(id) {
     box(
       title = "6. . An insurance contract is expected to pay the following future cash flows at the end of each year for the next 3 years:",
       status = "white", solidHeader = TRUE, width = 12,
-      # Data table
-      tags$table(class = "table table-bordered", style = "width: 300px;",
+
+    div(style = "display: flex; justify-content: center; margin-top: 20px;",
+      tags$table(class = "table table-bordered", style = "width: 300px; text-align: center;",
         tags$thead(
           tags$tr(
-            tags$th("Year"),
-            tags$th("Expected Cash Flow")
+            tags$th("Year", style = "background-color: #B3850D; color: white;"),
+            tags$th("Expected Cash Flow", style = "background-color: #B3850D; color: white;")
           )
         ),
         tags$tbody(
-          tags$tr(tags$td("1"), tags$td("$1,000")),
-          tags$tr(tags$td("2"), tags$td("$1,200")),
-          tags$tr(tags$td("3"), tags$td("$1,500"))
+          tags$tr(
+            tags$td("1", style = "background-color: #97BC39; color: white;"),
+            tags$td("$1,000")
+          ),
+          tags$tr(
+            tags$td("2", style = "background-color: #97BC39; color: white;"),
+            tags$td("$1,200")
+          ),
+          tags$tr(
+            tags$td("3", style = "background-color: #97BC39; color: white;"),
+            tags$td("$1,500")
+          )
         )
-      ),
+      )
+    ),
+
       # Assumptions
       tags$ul(
         tags$li("The risk-free interest rate is 3% per annum, compounded annually."),
