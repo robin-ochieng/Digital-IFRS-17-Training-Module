@@ -5,7 +5,7 @@
   font-size: 15.5px;
   color: #2f2f2f;
   background-color: #fefefe;
-  border-left: 6px solid #AF851D;
+  border-left: 6px solid #B3850D;
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
@@ -15,14 +15,14 @@
 .module-intro-text h2 {
   font-size: 24px;
   font-weight: 700;
-  color: #AF851D;
+  color: #B3850D;
   margin-bottom: 20px;
 }
 
 .module-intro-text h3 {
   font-size: 20px;
   font-weight: 600;
-  color: #9FBD59;
+  color: #97BC39;
   margin-top: 30px;
   margin-bottom: 10px;
 }
@@ -51,3 +51,41 @@
 .box .shiny-input-radiogroup {
   margin-bottom: 20px;
 }
+
+/* === Table Styling for Key IFRS 17 Concepts === */
+.table.key-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 15px;
+}
+
+/* Header row */
+.table.key-table thead th {
+  background-color: #97BC39; /* Green highlight */
+  color: #ffffff;
+  padding: 10px;
+  text-align: left;
+  font-weight: 700;
+  border: 1px solid #dee2e6;
+}
+
+/* Table cells */
+.table.key-table td {
+  padding: 10px;
+  vertical-align: top;
+  border: 1px solid #dee2e6;
+  font-size: 15px;
+  background-color: #ffffff;
+}
+
+/* Optional: Emphasize first column */
+.table.key-table tbody td:first-child {
+  font-weight: 600;
+  color: #333333;
+  background-color: #f9f9f9;
+}
+
+
+
+
