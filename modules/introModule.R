@@ -26,32 +26,52 @@ tagList(
           # hr(class = "divider"),
           
           div(class = "cover-section",
-              h2(class = "cover-title", "What This Module Covers"),
-              tags$ul(class = "cover-list",
-                tags$li(
-                  span(class = "cover-icon", "✅"),
-                  span(class = "cover-text", "The key objectives and scope of IFRS 17")
-                ),
-                tags$li(
-                  span(class = "cover-icon", "📊"),
-                  span(class = "cover-text",
-                      "An overview of core measurement models: Building Block, Premium Allocation, and Variable Fee Approach")
-                ),
-                tags$li(
-                  span(class = "cover-icon", "🧠"),
-                  span(class = "cover-text",
-                      "Interactive elements such as quizzes and case studies to reinforce understanding")
-                )
+            h2(class = "cover-title", "What This Module Covers"),
+            tags$ul(class = "cover-list",
+              tags$li(class = "cover-box",
+                span(class = "cover-icon", "✅"),
+                span(class = "cover-text", "Objectives and scope of IFRS 17")
+              ),
+              tags$li(class = "cover-box",
+                span(class = "cover-icon", "🧩"),
+                span(class = "cover-text", "How insurance contracts are grouped, measured, and presented")
+              ),
+              tags$li(class = "cover-box",
+                span(class = "cover-icon", "📚"),
+                span(class = "cover-text", "Interactive assessments, quizzes, and application-driven learning")
               )
+            )
           ),
-          
+
+
+          div(class = "modules-section",
+            h2(class = "modules-title", "📚 Course Modules"),
+            div(class = "module-grid",
+              div(class = "module-item", "📘 Module 1: Introduction and Scope of IFRS 17"),
+              div(class = "module-item", "📄 Module 2: Combination and Separation of Insurance Contracts"),
+              div(class = "module-item", "📦 Module 3: Level of Aggregation"),
+              div(class = "module-item", "⏱️ Module 4: Recognition of Insurance Contracts"),
+              div(class = "module-item", "📐 Module 5: Measurement on Initial Recognition"),
+              div(class = "module-item", "📊 Module 6: Subsequent Measurement"),
+              div(class = "module-item", "💰 Module 7: Discounting, CSM & Risk Adjustment"),
+              div(class = "module-item", "⚠️ Module 8: Onerous Contracts"),
+              div(class = "module-item", "📥 Module 9: Premium Allocation Approach"),
+              div(class = "module-item", "📤 Module 10: Reinsurance Contracts Held"),
+              div(class = "module-item", "💼 Module 11: Investment Contracts with DPF"),
+              div(class = "module-item", "✏️ Module 12: Modification & Derecognition"),
+              div(class = "module-item", "📑 Module 13: Presentation of Financial Statements"),
+              div(class = "module-item", "📈 Module 14: Insurance Service Result"),
+              div(class = "module-item", "📉 Module 15: Insurance Finance Income or Expenses")
+            )
+          ),
+
           # ——— New Objectives & Scope Section ———
           div(class = "intro-section-header", "Key Objectives & Scope of IFRS 17"),
           tags$ul(class = "objectives-list",
-            tags$li("🏷️ Establish a single, consistent measurement model for all insurance contracts"),
-            tags$li("📈 Recognize profit over the coverage period to boost transparency"),
-            tags$li("🔍 Enhance comparability across insurers and jurisdictions"),
-            tags$li("🌐 Scope: applies to insurance contracts, reinsurance held, and investment contracts with discretionary participation features")
+            tags$li("🏷️ Establish a single, consistent framework for all insurance contracts"),
+            tags$li("📈 Recognize profits in line with service delivery"),
+            tags$li("🔍 Improve comparability between insurers"),
+            tags$li("🌍 Applies to insurance, reinsurance, and specific investment contract")
           ),
           
           div(
@@ -63,14 +83,13 @@ tagList(
             ),
             # Two shorter paragraphs, with key phrases emphasized
             p(
-              "IFRS 17 aims to bring consistency and clarity to how insurance contracts are reported, ", 
-              strong("increasing transparency"), 
-              " and enabling ", 
-              strong("better comparisons across companies."), 
+              "IFRS 17 transforms how insurers measure and report obligations. It promotes ", 
+              strong("transparency"), " and ",
+              strong("consistency"), " across global financial statements."
               
             ),
             p(
-              "You’ll also learn which types of insurance contracts fall under IFRS 17 and why this matters for insurers, regulators, and investors alike."
+              "By the end of this course, you'll understand which contracts fall under IFRS 17, how to apply the standard effectively, and how it impacts insurers, regulators, and stakeholders."
             )
           ),
           div(
@@ -101,3 +120,4 @@ IFRS17TrainingIntroServer <- function(id) {
 
   })
 }
+
