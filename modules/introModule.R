@@ -10,22 +10,23 @@ IFRS17TrainingIntroUI <- function(id) {
         tags$img(
           src   = "images/ira_logo_.png", class = "logo logo-afdb"),
         # right-hand logo
-        # tags$img(src   = "images/kenbright.png",  class = "logo logo-kenbright")
+        tags$img(src   = "images/kenbright.png",  class = "logo logo-kenbright")
       )
     )
   )
 tagList(
-  # logo_bar,
+  logo_bar,
   div(class = "intro-outer-wrapper",
       div(class = "ifrs17-intro-container",
           
           h1("IFRS 17 Digital Training Module"),
+        div(class = "modules-section", 
           p(class = "intro-lead",
             "This self-paced module provides a structured overview of IFRS 17, including its objectives, core measurement models, and practical applications."
+           )
           ),
           # hr(class = "divider"),
-          
-          div(class = "cover-section",
+        div(class = "modules-section",  
             h2(class = "cover-title", "What This Module Covers"),
             tags$ul(class = "cover-list",
               tags$li(class = "cover-box",
@@ -40,8 +41,8 @@ tagList(
                 span(class = "cover-icon", "📚"),
                 span(class = "cover-text", "Interactive assessments, quizzes, and application-driven learning")
               )
-            )
-          ),
+          )
+        ),
 
 
           div(class = "modules-section",
@@ -66,14 +67,15 @@ tagList(
           ),
 
           # ——— New Objectives & Scope Section ———
+          div(class = "modules-section",
           div(class = "intro-section-header", "Key Objectives & Scope of IFRS 17"),
           tags$ul(class = "objectives-list",
             tags$li("🏷️ Establish a single, consistent framework for all insurance contracts"),
             tags$li("📈 Recognize profits in line with service delivery"),
             tags$li("🔍 Improve comparability between insurers"),
             tags$li("🌍 Applies to insurance, reinsurance, and specific investment contract")
-          ),
-          
+          )),
+        div(class = "modules-section",         
           div(
             class = "intro-note",
             # Icon + header
@@ -91,7 +93,7 @@ tagList(
             p(
               "By the end of this course, you'll understand which contracts fall under IFRS 17, how to apply the standard effectively, and how it impacts insurers, regulators, and stakeholders."
             )
-          ),
+          )),
           div(
             class = "intro-nav",
             actionButton(
