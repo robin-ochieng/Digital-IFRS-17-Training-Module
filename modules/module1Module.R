@@ -11,39 +11,127 @@ IFRS17Module1UI <- function(id) {
         class = "logo-wrapper d-flex justify-content-between align-items-center",
         # left-hand logo
         tags$img(
-          src   = "images/ira_logo_.png",
-          class = "logo logo-afdb"
-        ),
+          src   = "images/ira_logo_.png", class = "logo logo-afdb"),
         # right-hand logo
-        # tags$img(
-        #   src   = "images/kenbright.png",
-        #   class = "logo logo-kenbright"
-        # )
+        tags$img(src   = "images/kenbright.png",  class = "logo logo-kenbright")
       )
     )
   )
-  tagList(
-    # logo_bar,
-
-    tags$div(
+tagList(
+  logo_bar,
+    div(
         class = "section-header",
-        h2("📘 Module 1 – Introduction & Scope of IFRS 17", class = "section-title-top"),
-        h3("📙 Section 1 – Basics", class = "section-title"),
-        p("Answer the following questions to test your understanding of IFRS 17 fundamentals.",
-          class = "section-subtitle")
+        h2("📘 Module 1 – Introduction & Scope of IFRS 17", class = "section-title-top")
+    ),
+    div(class = "module-section",
+          h3("🎯 Module Objective"),
+          p("This module aims to provide an overview of the introduction and scope of IFRS 17, as outlined in Paragraphs 1–8 of the Standard.")
+    ),    
+    div(class = "module-section",
+      h3("📖 Introduction"),
+      p("International Accounting Standards Board (IASB) introduced IFRS 17 Standard in May 2017 to replace IFRS 4."),
+      p(HTML("The Standard sets out comprehensive requirements for the <strong>recognition, measurement, presentation, and disclosure</strong> of insurance contracts. It aims to ensure that an entity provides relevant information that faithfully represents those contracts.")),
+    ),
+    div(class = "module-section",
+      p(HTML("In March 2020, IASB extended the implementation deadline from <strong>1<sup>st</sup> January 2022</strong> to <strong>1<sup>st</sup> January 2023</strong>.")),
+      p(HTML("Insurers adopted the IFRS 17 reporting standard with the transition date being <strong>1<sup>st</sup> January 2022</strong>, and date of initial application being <strong>1<sup>st</sup> January 2023</strong>. Companies were expected to carry out testing and parallel runs of IFRS 17 processes and systems.")),
+      p(HTML("IFRS 17 became effective on <strong>1<sup>st</sup> January 2023</strong>, and full compliance in financial reporting was required."))
+    ),    
+    div(class = "module-section image-timeline-wrapper",
+          h3("🗓️ IFRS 17 Timeline", class = "section-subheading"),
+          div(
+              class = "timeline-image-container",
+              img(
+                  src = "images/ifrs17timeline.png",  # make sure you save the image to this path
+                  alt = "IFRS 17 Timeline",
+                  class = "timeline-image"
+              )
+          )
     ),
 
-    # shinyWidgets::progressBar(
-    #     id = ns("quiz_progress"),
-    #     value = 0,
-    #     total = 19,
-    #     display_pct = TRUE,
-    #     striped = TRUE,
-    #     status = "success"
-    #     ),
+    div(class = "module-section",
+      h3("🌐 Scope of IFRS 17"),
+      p("An insurer is required to apply the Standard to the following:"),
+      tags$ul(
+        tags$li("Insurance contracts, including ", strong("reinsurance contracts"), ", it issues"),
+        tags$li("Reinsurance contracts it holds; and"),
+        tags$li(
+          strong("Investment contracts with discretionary participation features"),
+          " it issues, provided the entity also issues insurance contracts."
+        )
+      ),
+      p("Discretionary participation features give policyholders the right to receive additional benefits at the discretion of the insurer. ",
+        em("For example, bonuses added to participating life insurance policies based on the insurer’s investment performance.")
+      ),
+      p("Under IFRS 17, an insurance contract must involve an uncertain future event and significant insurance risk."),
+      p("A key requirement is the transfer of risk, where the insurer must compensate the policyholder if the insured event has a negative impact on them.")
+    ),
+
+    div(class = "module-section image-timeline-wrapper",
+      h3("🌐 Contracts outside the scope of IFRS 17", class = "section-subheading"),
+      tags$table(class = "ifrs-table-module1",
+        tags$thead(
+          tags$tr(
+            tags$th("Excluded Contract Type"),
+            tags$th("Description"),
+            tags$th("Treated Under")
+          )
+        ),
+        tags$tbody(
+          tags$tr(
+            tags$td("Product warranties"),
+            tags$td("Warranties provided by a manufacturer, dealer, or retailer linked to a sale"),
+            tags$td("IFRS 15")
+          ),
+          tags$tr(
+            tags$td("Employee benefits"),
+            tags$td("Employer obligations under benefit plans for example pensions"),
+            tags$td("IAS 19, IFRS 2, IAS 26")
+          ),
+          tags$tr(
+            tags$td("Use of non-financial items"),
+            tags$td("Rights/obligations based on future use of non-financial items, such as license fees, lease contingents"),
+            tags$td("IFRS 15, IFRS 16, IAS 38")
+          ),
+          tags$tr(
+            tags$td("Residual value guarantees"),
+            tags$td("Often part of leasing or sales contracts"),
+            tags$td("IFRS 15, IFRS 16")
+          ),
+          tags$tr(
+            tags$td("Financial guarantee contracts"),
+            tags$td("Unless the issuer opts to treat them as insurance"),
+            tags$td("IFRS 9, IFRS 7, IAS 32")
+          ),
+          tags$tr(
+            tags$td("Business Combinations"),
+            tags$td("Contingent consideration receivable/payable"),
+            tags$td("IFRS 3")
+          ),
+          tags$tr(
+            tags$td("Policyholder Contracts"),
+            tags$td("Insurance contracts where the entity is the policyholder, unless it's reinsurance held"),
+            tags$td("Excluded from IFRS 17")
+          )
+        )
+      ),
+
+      # Highlighted note below table
+      p(em("*Description of various standards have been provided in the List of IFRS & IAS Standards"),
+        style = "font-style: italic; color: #B3850D; margin-top: 10px;")   
+    ),
+
+    div(class = "module-section",
+    p("Some contracts may meet the definition of insurance contracts but are mainly meant to provide services for a fixed fee. An entity can apply IFRS 15 instead of IFRS 17 to these contracts if the conditions below exist:"),
+      tags$ul(
+        tags$li("The price set is not based on the risk of each individual customer."),
+        tags$li("The contract provides compensation in the form of services, not cash payments."),
+        tags$li("The insurance risk arises primarily from the customer's use of services, and not uncertainty about service cost.")
+      )  
+    ),
 
     box(
-        title = "Participant Information",
+        title = "Answer the following questions to test your understanding of Introduction & Scope of IFRS 17.",
         status = "white", solidHeader = TRUE, width = 12,
         p("Please enter your name."),
         textInput(ns("participant_name"), "Enter your Name:")
@@ -51,151 +139,120 @@ IFRS17Module1UI <- function(id) {
 
 
     box(
-      title = "1. What is the global date of Initial Application of IFRS 17 for insurance companies under
-                National Insurance Commission's supervision?",
+      title = "1. What is the primary objective of IFRS 17?",
       status = "white", solidHeader = TRUE, width = 12,
       radioButtons(ns("q1"), label = NULL, choices = c(
-        "31 Dec 2023", "1 Jan 2022", "1 Jan 2023", "31 Dec 2021"), selected = character(0))
+        "To standardize insurance accounting globally",
+        "To replace IFRS 16",
+        "To define financial instruments",
+        "To measure investment property"
+      ), selected = character(0))
     ),
-    
+
     box(
-      title = "2. When the National Insurance Commission (NIC) is supervising insurers, which of the
-                methods below does it NOT expect to see as an IFRS 17 application method?",
+      title = "2. What does IFRS 17 replace?",
       status = "white", solidHeader = TRUE, width = 12,
-      radioButtons(ns("q2"), label = NULL, choices = c("Premium Allocation Approach", "General Allocation Approach", "General Measurement Model", "Variable Fee Approach"), selected = character(0))
+      radioButtons(ns("q2"), label = NULL, choices = c(
+        "IAS 37",
+        "IFRS 4",
+        "IFRS 9",
+        "IAS 40"
+      ), selected = character(0))
     ),
-    
+
     box(
-      title = "3. Which Balance Sheet entry item below is NOT expected to be shown by an insurer while
-                implementing IFRS 17?",
+      title = "3. What was the official date of initial application for IFRS 17?",
       status = "white", solidHeader = TRUE, width = 12,
-      radioButtons(ns("q3"), label = NULL, choices = c("Insurance Contract Liabilities", "Premium Receivables from Policyholders", "Reinsurance Contract Assets", "Insurance Contract Assets"), selected = character(0))
+      radioButtons(ns("q3"), label = NULL, choices = c(
+        "1st January 2022",
+        "31st December 2022",
+        "1st January 2023",
+        "1st January 2021"
+      ), selected = character(0))
     ),
-    
+
     box(
-      title = "4. Which Profit & Loss entry item below is NOT expected to be shown by an insurer while
-                implementing IFRS 17?",
+      title = "4. IFRS 17 applies to?",
       status = "white", solidHeader = TRUE, width = 12,
-      radioButtons(ns("q4"), label = NULL, choices = c("Gross Written Premium", "Management Expenses", "Commissions (Insurance Acquisition Costs)", "Incurred Claims"), selected = character(0))
-    ),
-    
-    tags$div(
-        class = "section-header",
-        h3("📙 Section 2: Concepts", class = "section-title"),
-        p("Explore key terminologies, accounting treatments, and financial implications under IFRS 17.")
-    ),
-    box(
-    title = "5. IFRS 17 requires that the insurer establishes a new reserve called Contractual Service
-            Margin (“CSM”). What does this reserve represent? (2 marks)",
-    status = "white", solidHeader = TRUE, width = 12,
-    radioButtons(ns("q5"), label = NULL,
-                choices = c("Unpaid Claims", "Unearned Profit", "Earned Premium", "Risk Adjustment"), selected = character(0))
-    ),   
-
-    box(
-    title = "6. The Risk Adjustment for non-financial risks can be considered as (2 marks)",
-    status = "white", solidHeader = TRUE, width = 12,
-    radioButtons(ns("q6"), label = NULL,
-                choices = c("Part of Gross Written Premium", "Part of Shareholder Funds", "Part of Premium & Claims Reserves", "Part of Intangible Assets"), selected = character(0))
+      radioButtons(ns("q4"), label = NULL, choices = c(
+        "All insurance entities only",
+        "Any entity issuing insurance contracts",
+        "Reinsurers only",
+        "Investment banks only"
+      ), selected = character(0))
     ),
 
     box(
-    title = "7. The Liability for Incurred Claims (LIC) is composed of: (2 marks)",
-    status = "white", solidHeader = TRUE, width = 12,
-    radioButtons(ns("q7"), label = NULL,
-                choices = c(
-                    "Liability for Remaining Coverage & Risk Adjustment Margin",
-                    "Outstanding Claim Reserves and Incurred But Not Reported Reserves & Risk Adjustment for Non-Financial Risks",
-                    "Contractual Service Margin & Risk Adjustment Margin for Non-Financial Risks",
-                    "Premium & Risk Adjustment Margin for Non-Financial Risks"), selected = character(0))
+      title = "5. How does IFRS 17 define an insurance contract?",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q5"), label = NULL, choices = c(
+        "Contract transferring insurance risk",
+        "Contract transferring investment risk",
+        "Contract transferring liquidity risk",
+        "Contract for investment advice"
+      ), selected = character(0))
     ),
 
     box(
-    title = "8. How does IFRS 17 Standard expect the insurer and the National Insurance Commission
-            to monitor how the discounting of cashflows is being unwound as the payment date gets
-            closer? (2 marks)",
-    status = "white", solidHeader = TRUE, width = 12,
-    radioButtons(ns("q8"), label = NULL,
-                choices = c(
-                    "Through Contractual Service Margin",
-                    "Through Insurance Finance Expense",
-                    "Through Risk Adjustment Margin for Non-Financial Risks",
-                    "Through Shareholder Funds"), selected = character(0))
+      title = "6. How does IFRS 17 define 'insurance risk'?",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q6"), label = NULL, choices = c(
+        "The risk of policyholder default",
+        "The risk of future investment losses",
+        "The risk transferred from the policyholder to the insurer due to uncertain future events",
+        "Exchange rate risk"
+      ), selected = character(0))
     ),
 
     box(
-    title = "9. If all the policyholders fully pay their premium on time, the “Insurance Revenue” of a
-            General Insurance Company can be compared to (2 marks)",
-    status = "white", solidHeader = TRUE, width = 12,
-    radioButtons(ns("q9"), label = NULL,
-                choices = c(
-                    "Gross Written Premium", "Gross Earned Premium", "Net Earned Premium", "New Written Premium"), selected = character(0))
+      title = "7. Which of the following contracts falls under the scope of IFRS 17?",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q7"), label = NULL, choices = c(
+        "Product warranty issued by a retailer",
+        "Lease contract under IFRS 16",
+        "Financial guarantee contract under IFRS 9",
+        "Reinsurance contract held by an insurer"
+      ), selected = character(0))
     ),
 
     box(
-    title = "10. IFRS17 has a new view on how reinsurance contracts should be treated. The spirit of
-            the new approach is (2 marks)",
-    status = "white", solidHeader = TRUE, width = 12,
-    radioButtons(ns("q10"), label = NULL,
-                choices = c(
-                    "Combine all reinsurance and policyholder cashflows to get a net position",
-                    "Separate all reinsurance cashflows from policyholder cashflows and report the net cost of reinsurance separately",
-                    "Combine only premium reinsurance cashflows and policyholder cashflows",
-                    "Combine all claims, acquisition costs and gross premium cashflows"), selected = character(0))
+      title = "8. Which contracts are only within IFRS 17 if the issuer also issues insurance contracts?",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q8"), label = NULL, choices = c(
+        "Leases",
+        "Derivatives",
+        "Term Deposits",
+        "Investment contracts with discretionary participation features"
+      ), selected = character(0))
     ),
 
     box(
-    title = "11. IFRS 17 has a made some changes to how claim reserves should be treated when it
-        comes to time value of money. The spirit of the new approach is (2 marks)",
-    status = "white", solidHeader = TRUE, width = 12,
-    radioButtons(ns("q11"), label = NULL,
-                choices = c(
-                    "The insurer has the choice of discounting or not regardless of when the claim is expected to be paid",
-                    "All claims expected to be paid after a year should be discounted and those expected to be paid in less than
-                        one year should also be discounted.",
-                    "All claims expected to be paid after a year should be discounted and those expected to be paid in less than one year (can be discounted or not depending on the choice of the insurer)",
-                    "All claims must be discounted regardless of expected payment date."), selected = character(0))
+      title = "9. Are product warranties issued by a retailer within IFRS 17?",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q9"), label = NULL, choices = c(
+        "Yes, always",
+        "No, they fall under IAS 37",
+        "Only for 12-month terms",
+        "Yes, if embedded in insurance"
+      ), selected = character(0))
     ),
 
     box(
-    title = "12. Some people say adoption of IFRS 17 should be encouraged by regulators, such as
-        National Insurance Commission (NIC), because it encourages CASH and CARRY by (2 marks)",
-    status = "white", solidHeader = TRUE, width = 12,
-    radioButtons(ns("q12"), label = NULL,
-                choices = c(
-                    "Not capitalizing Premium Receivables in Balance Sheet",
-                    "Ignoring Uncollected Premium in Income",
-                    "It considers contracts only if claims have been paid",
-                    "It discounts claims"), selected = character(0))
-    ),
-
-    box(
-    title = "13. When an insurer discounts its liabilities at a higher rate than what it expecting to earn,
-        the National Insurance Commission (NIC) can easily detect this in the Profit & Loss Account
-        by looking at (2 marks)",
-    status = "white", solidHeader = TRUE, width = 12,
-    radioButtons(ns("q13"), label = NULL,
-                choices = c(
-                    "Insurance Revenue", "Insurance Service Expense",
-                    "Net Financial Results", "Insurance Service Results"), selected = character(0))
-    ),
-
-    box(
-    title = "14. Under the General Measurement Model (GMM), the insurance contract liabilities or
-        assets are composed of (2 marks)",
-    status = "white", solidHeader = TRUE, width = 12,
-    radioButtons(ns("q14"), label = NULL,
-                choices = c(
-                    "Liability for Remaining Coverage & Risk Adjustment Margin",
-                    "Liability for Remaining Coverage & Liability for Incurred Claims",
-                    "Contractual Service Margin & Liability for Incurred Claims",
-                    "Premium, Outstanding Claim Reserves and Incurred But Not Reported Reserves"), selected = character(0))
+      title = "10. What type of contract is explicitly excluded from IFRS 17 scope?",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q10"), label = NULL, choices = c(
+        "Group life insurance",
+        "Reinsurance contracts",
+        "Insurance-linked investments",
+        "Financial guarantees (under IFRS 9)"
+      ), selected = character(0))
     ),
 
     actionButton(ns("submit"), "Submit Quiz", icon = icon("check"), class = "btn-primary control-button-submit" ),
     br(), 
     br(),
     uiOutput(ns("result")),
+    
     div(
       class = "quiz-nav",
       actionButton(
@@ -207,22 +264,68 @@ IFRS17Module1UI <- function(id) {
   )
 }
 
+correct_answers_module1 <- list( 
+  q1 = list(
+    answer = "To standardize insurance accounting globally",
+    explanation = "IFRS 17 aims to create a consistent accounting framework for insurance contracts to improve transparency and comparability."
+  ),
+  q2 = list(
+    answer = "IFRS 4",
+    explanation = "IFRS 17 replaced IFRS 4, which was an interim standard."
+  ),
+  q3 = list(
+    answer = "1st January 2023",
+    explanation = "The initial application date for IFRS 17 was 1st January 2023."
+  ),
+  q4 = list(
+    answer = "Any entity issuing insurance contracts",
+    explanation = "This reflects IFRS 17's scope, which applies to any entity that issues insurance contracts."
+  ),
+  q5 = list(
+    answer = "Contract transferring insurance risk",
+    explanation = "This captures the essential element of IFRS 17: transferring insurance risk from policyholder to insurer."
+  ),
+  q6 = list(
+    answer = "The risk transferred from the policyholder to the insurer due to uncertain future events",
+    explanation = "Insurance risk under IFRS 17 involves uncertainty about future events that may trigger insurer payment."
+  ),
+  q7 = list(
+    answer = "Reinsurance contract held by an insurer",
+    explanation = "Reinsurance contracts held are explicitly included under IFRS 17's scope."
+  ),
+  q8 = list(
+    answer = "Investment contracts with discretionary participation features",
+    explanation = "These contracts are only within the scope of IFRS 17 if issued by entities that also issue insurance contracts."
+  ),
+  q9 = list(
+    answer = "No, they fall under IAS 37",
+    explanation = "Retail product warranties are covered by IAS 37, not IFRS 17."
+  ),
+  q10 = list(
+    answer = "Financial guarantees (under IFRS 9)",
+    explanation = "Financial guarantee contracts are usually treated under IFRS 9 unless specifically designated as insurance."
+  )
+)
+
+
+
 # ---- Server ----
 IFRS17Module1Server <- function(id) {
   moduleServer(id, function(input, output, session) {
     # bring ns into scope
     ns <- session$ns
+
+
+    # Quiz result output
     final_name <- reactiveVal("")
 
     score <- reactiveVal(0)
-    section1_score <- reactiveVal(0)
-    section2_score <- reactiveVal(0)
-    
+
     # Feedback functions
     observeEvent(input$submit, {
         removeModal()
         # 1. List out all your question input IDs
-        question_ids <- paste0("q", 1:14)
+        question_ids <- paste0("q", 1:10)
         
         # 2. Find which ones are missing
         missing <- vapply(question_ids, function(qid) {
@@ -264,185 +367,41 @@ IFRS17Module1Server <- function(id) {
 
 
         score(0)
-        section1_score(0)
-        section2_score(0)
         feedback <- list()
 
+    for (qid in names(correct_answers_module1)) {
+      correct <- correct_answers_module1[[qid]]$answer
+      explanation <- correct_answers_module1[[qid]]$explanation
+      user_answer <- input[[qid]]
 
-      # Correct answers
-      # Q1
-      if (input$q1 == "1 Jan 2023") {
-        score(score() + 1)
-        section1_score(section1_score() + 1)
-        feedback[[1]] <- "✅ Q1: Correct!"
-        feedbackSuccess("q1", "Correct!")
-      } else {
-        feedback[[1]] <- "❌ Q1: Correct answer is '1 Jan 2023'. IFRS 17 became effective on 1 January 2023 to align global accounting for insurance contracts."
-        feedbackDanger("q1", "Incorrect! Correct answer is '1 Jan 2023'. IFRS 17 became effective on 1 January 2023 to align global accounting for insurance contracts.")
+      if (is.null(user_answer)) {
+        feedback[[qid]] <- paste0("⚠️ ", toupper(qid), ": No response recorded.")
+        feedbackDanger(qid, "No answer selected.")
+        next
       }
-       
 
-        # Q2
-      if (input$q2 == "General Allocation Approach") {
+      if (user_answer == correct) {
         score(score() + 1)
-        section1_score(section1_score() + 1)
-        feedback[[2]] <- "✅ Q2: Correct!"
-        feedbackSuccess("q2", "Correct!")
+        feedback[[qid]] <- paste0("✅ ", toupper(qid), ": Correct!")
+        feedbackSuccess(qid, "Correct!")
       } else {
-        feedback[[2]] <- "❌ Q2: Correct answer is 'General Allocation Approach'. This is not a recognized measurement method under IFRS 17."
-        feedbackDanger("q2", "Incorrect! Correct answer is 'General Allocation Approach'. This is not a recognized measurement method under IFRS 17.")
+        feedback[[qid]] <- paste0("❌ ", toupper(qid), ": Your answer was incorrect. The correct answer is '", correct, "'. Explanation: ", explanation)
+        feedbackDanger(qid, paste0("Incorrect! Correct answer is: ", correct, ". ", explanation))
       }
-       
-      
-        # Q3
-      if (input$q3 == "Premium Receivables from Policyholders") {
-        score(score() + 1)
-        section1_score(section1_score() + 1)
-        feedback[[3]] <- "✅ Q3: Correct!"
-        feedbackSuccess("q3", "Correct!")
+    }
+        
+    valid_ids <- paste0("q", 1:10)
+    feedback <- lapply(valid_ids, function(qid) {
+      if (!is.null(feedback[[qid]])) {
+        feedback[[qid]]
       } else {
-        feedback[[3]] <- "❌ Q3: Correct answer is 'Premium Receivables from Policyholders'. Under IFRS 17, premiums are not treated as receivables but rather as part of the contractual service margin."
-        feedbackDanger("q3", "Incorrect! Correct answer is 'Premium Receivables from Policyholders'. Under IFRS 17, premiums are not treated as receivables but rather as part of the contractual service margin.")
+        paste0("⚠️ ", toupper(qid), ": No response recorded.")
       }
-       
-      
-        # Q4
-      if (input$q4 == "Gross Written Premium") {
-        score(score() + 1)
-        section1_score(section1_score() + 1)
-        feedback[[4]] <- "✅ Q4: Correct!"
-        feedbackSuccess("q4", "Correct!")
-      } else {
-        feedback[[4]] <- "❌ Q4: Correct answer is 'Gross Written Premium'. IFRS 17 replaces gross premium with 'Insurance Revenue' to align income recognition with services provided."
-        feedbackDanger("q4", "Incorrect! Correct answer is 'Gross Written Premium'. IFRS 17 replaces gross premium with 'Insurance Revenue' to align income recognition with services provided.")
-      }
-       
-
-
-        # Section 2
-        # Q5
-        if (input$q5 == "Unearned Profit") {
-            score(score() + 1)
-            section2_score(section2_score() + 1)
-            feedback[[5]] <- "✅ Q5: Correct!"
-            feedbackSuccess("q5", "Correct!")
-        } else {
-            feedback[[5]] <- "❌ Q5: Correct answer is 'Unearned Profit'. The Contractual Service Margin (CSM) represents the unearned profit that will be recognized over the life of the insurance contract."
-            feedbackDanger("q5", "Incorrect! Correct answer is 'Unearned Profit'. The Contractual Service Margin (CSM) represents the unearned profit that will be recognized over the life of the insurance contract.")
-        }
-       
-
-        # Q6
-        if (input$q6 == "Part of Premium & Claims Reserves") {
-            score(score() + 1)
-            section2_score(section2_score() + 1)
-            feedback[[6]] <- "✅ Q6: Correct!"
-            feedbackSuccess("q6", "Correct!")
-        } else {
-            feedback[[6]] <- "❌ Q6: Correct answer is 'Part of Premium & Claims Reserves'. The Risk Adjustment reflects uncertainty and is considered part of the insurance liability."
-            feedbackDanger("q6", "Incorrect! Correct answer is 'Part of Premium & Claims Reserves'. The Risk Adjustment reflects uncertainty and is considered part of the insurance liability.")
-        }
-        
-
-            # Q7
-        if (input$q7 == "Outstanding Claim Reserves and Incurred But Not Reported Reserves & Risk Adjustment for Non-Financial Risks") {
-            score(score() + 1)
-            section2_score(section2_score() + 1)
-            feedback[[7]] <- "✅ Q7: Correct!"
-            feedbackSuccess("q7", "Correct!")
-        } else {
-            feedback[[7]] <- "❌ Q7: Correct answer is 'Outstanding Claim Reserves and IBNR & Risk Adjustment'. These represent the components of the Liability for Incurred Claims (LIC)."
-            feedbackDanger("q7", "Incorrect! Correct answer is 'Outstanding Claim Reserves and IBNR & Risk Adjustment'. These represent the components of the Liability for Incurred Claims (LIC).")
-        }
-        
-
-            # Q8
-        if (input$q8 == "Through Insurance Finance Expense") {
-            score(score() + 1)
-            section2_score(section2_score() + 1)
-            feedback[[8]] <- "✅ Q8: Correct!"
-            feedbackSuccess("q8", "Correct!")
-        } else {
-            feedback[[8]] <- "❌ Q8: Correct answer is 'Through Insurance Finance Expense'. This component captures the effect of discounting on expected future cash flows as time passes."
-            feedbackDanger("q8", "Incorrect! Correct answer is 'Through Insurance Finance Expense'. This component captures the effect of discounting on expected future cash flows as time passes.")
-        }
-        
-
-            # Q9    
-        if (input$q9 == "Gross Earned Premium") {
-            score(score() + 1)
-            section2_score(section2_score() + 1)
-            feedback[[9]] <- "✅ Q9: Correct!"
-            feedbackSuccess("q9", "Correct!")
-        } else {
-            feedback[[9]] <- "❌ Q9: Correct answer is 'Gross Earned Premium'. IFRS 17's 'Insurance Revenue' is conceptually aligned with gross earned premium, based on services provided."
-            feedbackDanger("q9", "Incorrect! Correct answer is 'Gross Earned Premium'. IFRS 17's 'Insurance Revenue' is conceptually aligned with gross earned premium, based on services provided.")
-        }
-        
-
-            # Q10
-        if (input$q10 == "Separate all reinsurance cashflows from policyholder cashflows and report the net cost of reinsurance separately") {
-            score(score() + 1)
-            section2_score(section2_score() + 1)
-            feedback[[10]] <- "✅ Q10: Correct!"
-            feedbackSuccess("q10", "Correct!")
-        } else {
-            feedback[[10]] <- "❌ Q10: Correct answer is 'Separate all reinsurance cashflows from policyholder cashflows and report the net cost of reinsurance separately'. IFRS 17 requires reinsurance contracts to be presented separately from direct insurance contracts to reflect their different nature."
-            feedbackDanger("q10", "Incorrect! Correct answer is 'Separate all reinsurance cashflows from policyholder cashflows and report the net cost of reinsurance separately'. IFRS 17 requires reinsurance contracts to be presented separately from direct insurance contracts to reflect their different nature.")
-        }
-        
-
-            # Q11
-        if (input$q11 == "All claims expected to be paid after a year should be discounted and those expected to be paid in less than one year (can be discounted or not depending on the choice of the insurer)") {
-            score(score() + 1)
-            section2_score(section2_score() + 1)
-            feedback[[11]] <- "✅ Q11: Correct!"
-            feedbackSuccess("q11", "Correct!")
-        } else {
-            feedback[[11]] <- "❌ Q11: Correct answer is 'All claims expected to be paid after a year should be discounted and those expected to be paid in less than one year (can be discounted or not depending on the choice of the insurer)'. IFRS 17 introduces flexibility in discounting short-term claims but mandates it for long-term claims."
-            feedbackDanger("q11", "Incorrect! Correct answer is 'All claims expected to be paid after a year should be discounted and those expected to be paid in less than one year (can be discounted or not depending on the choice of the insurer)'. IFRS 17 introduces flexibility in discounting short-term claims but mandates it for long-term claims.")
-        }
-        
-
-            # Q12
-        if (input$q12 == "Ignoring Uncollected Premium in Income") {
-            score(score() + 1)
-            section2_score(section2_score() + 1)
-            feedback[[12]] <- "✅ Q12: Correct!"
-            feedbackSuccess("q12", "Correct!")
-        } else {
-            feedback[[12]] <- "❌ Q12: Correct answer is 'Ignoring Uncollected Premium in Income'. IFRS 17 prohibits recognizing revenue until it's earned through services, not based on premium billing or receipts."
-            feedbackDanger("q12", "Incorrect! Correct answer is 'Ignoring Uncollected Premium in Income'. IFRS 17 prohibits recognizing revenue until it's earned through services, not based on premium billing or receipts.")
-        }
-        
-
-            # Q13
-        if (input$q13 == "Net Financial Results") {
-            score(score() + 1)
-            section2_score(section2_score() + 1)
-            feedback[[13]] <- "✅ Q13: Correct!"
-            feedbackSuccess("q13", "Correct!")
-        } else {
-            feedback[[13]] <- "❌ Q13: Correct answer is 'Net Financial Results'. IFRS 17 isolates the effect of discounting from insurance service results and reports it in financial results."
-            feedbackDanger("q13", "Incorrect! Correct answer is 'Net Financial Results'. IFRS 17 isolates the effect of discounting from insurance service results and reports it in financial results.")
-        }
-        
-
-            # Q14
-        if (input$q14 == "Liability for Remaining Coverage & Liability for Incurred Claims") {
-            score(score() + 1)
-            section2_score(section2_score() + 1)
-            feedback[[14]] <- "✅ Q14: Correct!"
-            feedbackSuccess("q14", "Correct!")
-        } else {
-            feedback[[14]] <- "❌ Q14: Correct answer is 'Liability for Remaining Coverage & Liability for Incurred Claims'. These are the two key components of insurance contract liabilities under the General Measurement Model (GMM)."
-            feedbackDanger("q14", "Incorrect! Correct answer is 'Liability for Remaining Coverage & Liability for Incurred Claims'. These are the two key components of insurance contract liabilities under the General Measurement Model (GMM).")
-        }
-        
-
+    })
+    names(feedback) <- valid_ids
 
     output$result <- renderUI({
-      total_questions <- 14
+      total_questions <- length(correct_answers_module1)
       percentage       <- round((score() / total_questions) * 100, 1)
       name             <- isolate(input$participant_name)
       color            <- if (percentage >= 70) "#198754" else "#dc3545"
@@ -470,7 +429,7 @@ IFRS17Module1Server <- function(id) {
                 color: #0d6efd;
               "),
                 # decorative subtitle
-            h4("has successfully completed the IFRS 17 Fundamentals Quiz",
+            h4("has successfully completed the IFRS 17 - Introduction & Scope of IFRS17 module",
               style = "
                 font-family: 'Nunito', sans-serif;
                 font-weight: 400;
@@ -499,7 +458,7 @@ IFRS17Module1Server <- function(id) {
           div(
             class = "print-summary",
             style = "
-              background-color:rgb(172, 167, 167);
+              background-color: #97BC39;
               padding: 25px;
               border-radius: 10px;
               box-shadow: 0 4px 12px rgba(0,0,0,0.08);
@@ -512,10 +471,6 @@ IFRS17Module1Server <- function(id) {
 
             HTML(paste0(
               "<p style='font-size:17px;'><strong>👤 Participant:</strong> ", name, "</p>",
-              "<div style='display:flex; gap:40px; flex-wrap:wrap;'>",
-                "<div><p><strong>Section I Score:</strong><br>", section1_score(), " / 4</p></div>",
-                "<div><p><strong>Section II Score:</strong><br>", section2_score(), " / 10</p></div>",
-              "</div>",
               "<hr style='border-top:1px solid #dee2e6;'>",
               "<p style='font-size:18px;'><strong>Total Score:</strong> ", score(), " / ", total_questions, "</p>",
               "<p style='font-size:18px;'><strong>Percentage Score:</strong> <span style='color:", color, "; font-weight:600;'>", percentage, "%</span></p>"
@@ -535,63 +490,59 @@ IFRS17Module1Server <- function(id) {
               )
             ),  # ← comma!
 
-            # ——— Print Button ———
-            div(
-              style = "text-align:center; margin-top:30px;",
-              actionButton(
-                ns("print_certificate"),
-                "Print Results as PDF",
-                icon  = icon("print"),
-                class = "control-button-tavnav no-print"
-              )
-            )
+            # # ——— Print Button ———
+            # div(
+            #   style = "text-align:center; margin-top:30px;",
+            #   actionButton(
+            #     ns("print_certificate"),
+            #     "Print Results as PDF",
+            #     icon  = icon("print"),
+            #     class = "control-button-tavnav no-print"
+            #   )
+            # )
 
-          )  # closes print-summary
+          )  
 
-        )  # closes print-area
+        )  
 
-      )  # closes tagList
+      )
 
-    })  # closes renderUI
-
-
-    # Update progress bar at the end of all scoring
-    # updateProgressBar(session, id = session$ns("quiz_progress"), value = score())     
+    })  
     })
 
-    observeEvent(input$print_certificate, {
-      runjs('
-        var cert = document.querySelector(".print-area");
-        if (!cert) {
-          alert("Nothing to print – make sure you have submitted the quiz first.");
-        } else {
-          // open a blank window
-          var w = window.open("", "_blank", "width=800,height=600");
-          // build a print-only style to hide .no-print
-          var head = `
-            <head>
-              <title>Participation Certificate</title>
-              <style>
-                body { margin:20px; font-family:Arial,sans-serif; }
-                @media print { .no-print { display: none; } }
-              </style>
-            </head>`;
-          // grab the certificate HTML
-          var body = "<body>" + cert.outerHTML +
-                    // wrap your button in a no-print div
-                    "<div class=\\"no-print\\" style=\\"text-align:center; margin-top:30px;\\">" +
-                      "<button onclick=\\"window.print()\\">Print Certificate as PDF</button>" +
-                    "</div></body>";
-          // write it all
-          w.document.write("<!doctype html><html>" + head + body + "</html>");
-          w.document.close();
-          w.onload = function() {
-            w.focus();
-            w.print();
-          };
-        }
-      ')
-    })
+    # observeEvent(input$print_certificate, {
+    #   runjs('
+    #     var cert = document.querySelector(".print-area");
+    #     if (!cert) {
+    #       alert("Nothing to print – make sure you have submitted the quiz first.");
+    #     } else {
+    #       // open a blank window
+    #       var w = window.open("", "_blank", "width=800,height=600");
+    #       // build a print-only style to hide .no-print
+    #       var head = `
+    #         <head>
+    #           <title>Participation Certificate</title>
+    #           <style>
+    #             body { margin:20px; font-family:Arial,sans-serif; }
+    #             @media print { .no-print { display: none; } }
+    #           </style>
+    #         </head>`;
+    #       // grab the certificate HTML
+    #       var body = "<body>" + cert.outerHTML +
+    #                 // wrap your button in a no-print div
+    #                 "<div class=\\"no-print\\" style=\\"text-align:center; margin-top:30px;\\">" +
+    #                   "<button onclick=\\"window.print()\\">Print Certificate as PDF</button>" +
+    #                 "</div></body>";
+    #       // write it all
+    #       w.document.write("<!doctype html><html>" + head + body + "</html>");
+    #       w.document.close();
+    #       w.onload = function() {
+    #         w.focus();
+    #         w.print();
+    #       };
+    #     }
+    #   ')
+    # }) 
 
    
 
