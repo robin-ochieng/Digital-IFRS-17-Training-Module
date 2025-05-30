@@ -1,7 +1,21 @@
 IFRS17MeasurementUI <- function(id) {
   ns <- NS(id)
-
-  tagList(
+  logo_bar <- fluidRow(
+    class = "logo-bar",                     # you’ll style this in CSS
+    column(
+      width = 12,
+      tags$div(
+        class = "logo-wrapper d-flex justify-content-between align-items-center",
+        # left-hand logo
+        tags$img(
+          src   = "images/ira_logo_.png", class = "logo logo-afdb"),
+        # right-hand logo
+        tags$img(src   = "images/kenbright.png",  class = "logo logo-kenbright")
+      )
+    )
+  )
+tagList(
+  logo_bar,
     div(
         class = "section-header",
         h2("🔍 IFRS 17 Foundations and Standards Overview", class = "section-title-top")
