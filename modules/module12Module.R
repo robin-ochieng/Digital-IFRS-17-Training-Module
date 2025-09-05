@@ -17,6 +17,7 @@ IFRS17Module12UI <- function(id) {
   )
 tagList(
   # logo_bar,
+    tags$img(src = "images/ira_logo_.png", alt = "IRA Logo", class = "intro-logo", style = "height:80px; display:block; margin: 0 auto 10px auto;"),
     div(
       class = "section-header",
       h2("📘 Module 12: Modification and Decognition of insurance contracts", class = "section-title-top")

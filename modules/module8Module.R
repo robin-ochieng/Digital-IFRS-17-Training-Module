@@ -16,7 +16,8 @@ IFRS17Module8UI <- function(id) {
     )
   )
 tagList(
-  # logo_bar,
+  #logo_bar,
+    tags$img(src = "images/ira_logo_.png", alt = "IRA Logo", class = "intro-logo", style = "height:80px; display:block; margin: 0 auto 10px auto;"),
     div(
       class = "section-header",
       h2("📘 Module 8: Onerous Contracts", class = "section-title-top")

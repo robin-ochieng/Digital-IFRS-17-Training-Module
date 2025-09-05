@@ -62,9 +62,9 @@ ui <- dashboardPage(
     sidebarIcon = NULL
   ),
   dashboardSidebar(
-    div(class = "logos",
-        img(src = "images/ira_logo_.png", class = "ira-logo") 
-    ),
+    # div(class = "logos",
+    #     img(src = "images/ira_logo_.png", class = "ira-logo") 
+    # ),
   tags$div(
     class = "menu-container", 
     sidebarMenu(
@@ -150,8 +150,7 @@ ui <- dashboardPage(
     div(
       class = "app-footer",
       style = "text-align: center; padding: 10px; color: #bbb; font-size: 14px;",
-      tags$span("Powered by "),
-      tags$img(src = "images/kenbright.png", style = "height: 25px; vertical-align: middle; margin-left: 5px;")
+      tags$span("Developed by kenbright.ai")
     )
   )
 )

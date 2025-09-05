@@ -18,6 +18,8 @@ tagList(
   # logo_bar,
   div(class = "intro-outer-wrapper",
       div(class ="ifrs17-intro-container",
+          # IRA logo above the main title
+          tags$img(src = "images/ira_logo_.png", alt = "IRA Logo", class = "intro-logo", style = "height:80px; display:block; margin: 0 auto 10px auto;"),
           h1("IFRS 17 Digital Training Module"),
         div(class = "modules-section", 
           p(class = "intro-lead",

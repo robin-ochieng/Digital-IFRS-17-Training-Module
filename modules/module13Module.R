@@ -19,6 +19,7 @@ IFRS17Module13UI<- function(id) {
   )
 tagList(
   # logo_bar,
+    tags$img(src = "images/ira_logo_.png", alt = "IRA Logo", class = "intro-logo", style = "height:80px; display:block; margin: 0 auto 10px auto;"),
     div(
       class = "section-header",
       h2("📘 Module 13: Presentation in the Statement of Financial Position", class = "section-title-top")
