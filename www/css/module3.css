@@ -1,12 +1,12 @@
 .section-title {
-  font-size: 24px;
+  font-size: 28px;
+  color: #B3850D;
   font-weight: bold;
-  color: #AF851D;
   margin-bottom: 20px;
 }
 
 .subheading-highlight {
-  color: #9FBD59;
+  color: #97BC39;
   font-weight: 600;
   font-size: 20px;
   margin-bottom: 10px;
@@ -14,7 +14,7 @@
 
 .objective-box {
   background-color: #f9f9f9;
-  border-left: 5px solid #9FBD59;
+  border-left: 5px solid #97BC39;
   padding: 15px;
   margin-bottom: 20px;
   border-radius: 6px;
@@ -30,7 +30,7 @@
 }
 
 .step-title {
-  color: #AF851D;
+  color: #B3850D;
   font-weight: 600;
   font-size: 18px;
   margin-bottom: 10px;

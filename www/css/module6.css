@@ -2,7 +2,7 @@
 .section-title {
   font-size: 26px;
   font-weight: 700;
-  color: #9FBD59;
+  color: #97BC39;
   margin-bottom: 20px;
   font-family: 'Nunito', sans-serif;
 }
@@ -11,7 +11,7 @@
 .subsection-title {
   font-size: 20px;
   font-weight: 600;
-  color: #AF851D;
+  color: #B3850D;
   margin-top: 25px;
   margin-bottom: 10px;
   font-family: 'Nunito', sans-serif;
@@ -47,7 +47,7 @@
 /* === Info Box Example / Scenario === */
 .info-box {
   background-color: #f8f9fa;
-  border-left: 4px solid #9FBD59;
+  border-left: 4px solid #97BC39;
   padding: 15px 20px;
   margin: 20px 0;
   border-radius: 6px;

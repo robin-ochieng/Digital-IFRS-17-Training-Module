@@ -15,10 +15,9 @@ IFRS17TrainingIntroUI <- function(id) {
     )
   )
 tagList(
-  logo_bar,
+  # logo_bar,
   div(class = "intro-outer-wrapper",
-      div(class = "ifrs17-intro-container",
-          
+      div(class ="ifrs17-intro-container",
           h1("IFRS 17 Digital Training Module"),
         div(class = "modules-section", 
           p(class = "intro-lead",

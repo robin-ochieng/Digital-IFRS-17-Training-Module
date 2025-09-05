@@ -18,7 +18,7 @@ IFRS17Module1UI <- function(id) {
     )
   )
 tagList(
-  logo_bar,
+  # logo_bar,
     div(
         class = "section-header",
         h2("📘 Module 1 – Introduction & Scope of IFRS 17", class = "section-title-top")
@@ -48,7 +48,6 @@ tagList(
               )
           )
     ),
-
     div(class = "module-section",
       h3("🌐 Scope of IFRS 17"),
       p("An insurer is required to apply the Standard to the following:"),
@@ -69,6 +68,7 @@ tagList(
 
     div(class = "module-section image-timeline-wrapper",
       h3("🌐 Contracts outside the scope of IFRS 17", class = "section-subheading"),
+      tags$div(class = "table-responsive",
       tags$table(class = "ifrs-table-module1",
         tags$thead(
           tags$tr(
@@ -114,7 +114,8 @@ tagList(
             tags$td("Excluded from IFRS 17")
           )
         )
-      ),
+      )
+     ),
 
       # Highlighted note below table
       p(em("*Description of various standards have been provided in the List of IFRS & IAS Standards"),

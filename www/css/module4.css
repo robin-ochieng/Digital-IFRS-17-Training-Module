@@ -1,6 +1,6 @@
 .section-title {
   font-size: 28px;
-  color: #AF851D;
+  color: #B3850D;
   font-weight: bold;
   margin-bottom: 20px;
 }
@@ -9,14 +9,14 @@
   background-color: #f9f9f9;
   padding: 20px 25px;
   margin-bottom: 25px;
-  border-left: 5px solid #9FBD59;
+  border-left: 5px solid #97BC39;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   font-family: 'Nunito', sans-serif;
 }
 
 .section-subheading {
-  color: #9FBD59;
+  color: #97BC39;
   font-weight: 600;
   font-size: 20px;
   margin-top: 0;
@@ -38,32 +38,18 @@
   margin-bottom: 5px;
 }
 
-.quiz-nav {
-  text-align: right;
-  margin-top: 30px;
-}
-
-.control-button-tavnav {
-  background-color: #AF851D !important;
-  color: #ffffff !important;
-  border: none;
-  font-weight: bold;
-  padding: 10px 18px;
-  border-radius: 6px;
-}
-
 
 .image-timeline-wrapper {
   background-color: #ffffff;
   padding: 25px 30px;
   margin-bottom: 25px;
-  border-left: 5px solid #9FBD59;
+  border-left: 5px solid #97BC39;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.04);
 }
 
 .timeline-title {
-  color: #9FBD59;
+  color: #97BC39;
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 15px;

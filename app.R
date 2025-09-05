@@ -5,7 +5,7 @@ library(bs4Dash)
 library(ggplot2)
 library(bslib)
 library(plotly)
-library(DT)
+library(DT) 
 library(dplyr)
 library(lubridate)
 library(shinyjs)
@@ -17,9 +17,7 @@ shinyjs::useShinyjs()
 source("modules/introModule.R")
 source("modules/measurementModule.R")
 source("modules/caseStudiesModule.R")
-
-# Modules 2–16 (make these files and functions)
-source("modules/module1Module.R")   # tabName = "module2"
+source("modules/module1Module.R") 
 source("modules/module2Module.R")
 source("modules/module3Module.R")
 source("modules/module4Module.R")
@@ -43,9 +41,9 @@ my_theme <- bs_theme(
   primary = "#EA80FC", 
   info = "#17a2b8",
   secondary = "#00BFA5",
-  base_font = font_google("Nunito"),
-  heading_font = font_google("Nunito"),
-  code_font = font_google("Nunito"),
+  base_font = font_google("Nunito Sans"),
+  heading_font = font_google("Nunito Sans"),
+  code_font = font_google("Nunito Sans"),
   navbar_bg = "#333333",  
   navbar_fg = "#ffffff"  
 )
@@ -72,29 +70,29 @@ ui <- dashboardPage(
     sidebarMenu(
       id = "sidebar", 
       # top‐level items
-      menuItem("Introduction",           tabName = "intro",        icon = icon("info-circle")),
-      menuItem("Measurement Models",     tabName = "measurement",  icon = icon("balance-scale")),
+      menuItem("Introduction",  tabName = "intro",  icon = icon("info-circle")),
+      menuItem("Foundations and Standards",  tabName = "measurement",  icon = icon("balance-scale")),
       # grouped IFRS-17 Modules
       menuItem(
-        "All IFRS-17 Modules", icon = icon("th-list"),
-        menuSubItem("Module 1 – Introduction & Scope of IFRS 17",                 tabName = "module1"),
-        menuSubItem("Module 2 – Combination & Separation of Insurance Contracts", tabName = "module2"),
-        menuSubItem("Module 3 – Level of Aggregation",                            tabName = "module3"),
-        menuSubItem("Module 4 – Recognition of Insurance Revenue",                tabName = "module4"),
-        menuSubItem("Module 5 – Measurement on Initial Recognition",              tabName = "module5"),
-        menuSubItem("Module 6 – Subsequent Measurement",                          tabName = "module6"),
-        menuSubItem("Module 7 – Discounting, CSM & Risk Adjustment",              tabName = "module7"),
-        menuSubItem("Module 8 – Onerous Contracts",                               tabName = "module8"),
-        menuSubItem("Module 9 – Premium Allocation Approach",                    tabName = "module9"),
-        menuSubItem("Module 10 – Reinsurance Contracts Held",                     tabName = "module10"),
-        menuSubItem("Module 11 – Investment Contracts with Discretionary Participation Features",       tabName = "module11"),
-        menuSubItem("Module 12 – Modification & Derecognition",                   tabName = "module12"),
-        menuSubItem("Module 13 – Presentation in the Statement of Financial Position", tabName = "module13"),
-        menuSubItem("Module 14 – Insurance Service Result",                       tabName = "module14"),
-        menuSubItem("Module 15 – Insurance Finance Income or Expenses",           tabName = "module15")
-      ),
+        "IFRS-17 Modules", icon = icon("th-list"),
+        menuSubItem(" | Module 1",  tabName = "module1", icon = icon("book")),
+        menuSubItem(" | Module 2",  tabName = "module2", icon = icon("book")),
+        menuSubItem(" | Module 3",  tabName = "module3", icon = icon("book")),
+        menuSubItem(" | Module 4",  tabName = "module4", icon = icon("book")),
+        menuSubItem(" | Module 5",  tabName = "module5", icon = icon("book")),
+        menuSubItem(" | Module 6",  tabName = "module6", icon = icon("book")),
+        menuSubItem(" | Module 7",  tabName = "module7", icon = icon("book")),
+        menuSubItem(" |  Module 8",  tabName = "module8", icon = icon("book")),
+        menuSubItem(" | Module 9",  tabName = "module9", icon = icon("book")),
+        menuSubItem(" | Module 10", tabName = "module10", icon = icon("book")),
+        menuSubItem(" | Module 11", tabName = "module11", icon = icon("book")),
+        menuSubItem(" | Module 12", tabName = "module12", icon = icon("book")),
+        menuSubItem(" | Module 13", tabName = "module13", icon = icon("book")),
+        menuSubItem(" | Module 14", tabName = "module14", icon = icon("book")),
+        menuSubItem(" | Module 15", tabName = "module15", icon = icon("book"))
+      )
       # final item
-      menuItem("Case Studies", tabName = "cases", icon = icon("book-open"))
+      # menuItem("Case Studies", tabName = "cases", icon = icon("book-open"))
     )
   )
 
@@ -106,22 +104,31 @@ ui <- dashboardPage(
     shinyFeedback::useShinyFeedback(),
     shinyjs::useShinyjs(),
     tags$head(
+      includeCSS("www/css/intro.css"),
+      includeCSS("www/css/media_queries.css"),
       includeCSS("www/css/custom_styles.css"),
+      includeCSS("www/css/measurement.css"),
+      includeCSS("www/css/module1.css"), 
+      includeCSS("www/css/module2.css"),
+      includeCSS("www/css/module3.css"),
       includeCSS("www/css/module4.css"),
       includeCSS("www/css/module5.css"),
       includeCSS("www/css/module6.css"),
-      includeCSS("www/css/module7.css"),
+      includeCSS("www/css/module7.css"),      
+      includeCSS("www/css/module9.css"),  
+      includeCSS("www/css/module11.css"),  
+      includeCSS("www/css/module13.css"), 
       includeCSS("www/css/module14.css"),
       tags$script(src = "js/custom.js"),
       tags$link(rel = "shortcut icon", href = "favicon/kenbright.ico", type = "image/x-icon"),
       tags$link(
-        href = "https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap", 
+        href = "https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap", 
         rel = "stylesheet")
     ),
     tabItems(
       tabItem(tabName = "intro", IFRS17TrainingIntroUI("intro")),
       tabItem(tabName = "measurement", IFRS17MeasurementUI("measurement")),
-      tabItem(tabName = "cases", IFRS17CaseStudiesUI("cases")),
+      # tabItem(tabName = "cases", IFRS17CaseStudiesUI("cases")),
 
       # Additional Modules 2–16
       tabItem(tabName = "module1",     IFRS17Module1UI("module1")),
@@ -139,6 +146,12 @@ ui <- dashboardPage(
       tabItem(tabName = "module13",    IFRS17Module13UI("module13")),
       tabItem(tabName = "module14",    IFRS17Module14UI("module14")),
       tabItem(tabName = "module15",    IFRS17Module15UI("module15"))
+    ),
+    div(
+      class = "app-footer",
+      style = "text-align: center; padding: 10px; color: #bbb; font-size: 14px;",
+      tags$span("Powered by "),
+      tags$img(src = "images/kenbright.png", style = "height: 25px; vertical-align: middle; margin-left: 5px;")
     )
   )
 )
@@ -327,20 +340,29 @@ server <- function(input, output, session) {
     )
   })
 
-  # This captures the module 15 navigation event
-  module15_nav <- IFRS17Module15Server("module15")
-  # When the user clicks “Next: Module 16 - Insurance Finance Income or Expenses”, jump the sidebar
-  observeEvent(module15_nav(), {
-    updateTabItems(
-      session,            # THIS session is the **root** session
-      inputId   = "sidebar",
-      selected  = "cases"
-    )
-  })
+  # # This captures the module 15 navigation event
+  # module15_nav <- IFRS17Module15Server("module15")
+  # # When the user clicks “Next: Module 16 - Insurance Finance Income or Expenses”, jump the sidebar
+  # observeEvent(module15_nav(), {
+  #   updateTabItems(
+  #     session,            # THIS session is the **root** session
+  #     inputId   = "sidebar",
+  #     selected  = "cases"
+  #   )
+  # })
+
+  # This captures the module 16 navigation event
+  IFRS17Module15Server("module15")
 
   # This captures the Case Studies navigation event 
-  IFRS17CaseStudiesServer("cases")
+  # IFRS17CaseStudiesServer("cases")
 }
 
 # Run the Shiny app
 shinyApp(ui, server)  
+
+
+
+
+
+

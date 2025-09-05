@@ -16,7 +16,7 @@ IFRS17Module3UI <- function(id) {
     )
   )
 tagList(
-  logo_bar,
+  # logo_bar,
       div(
           class = "section-header",
           h2("📘 Module 3: Level of Aggregation", class = "section-title-top")

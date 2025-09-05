@@ -16,7 +16,7 @@ IFRS17Module2UI <- function(id) {
     )
   )
 tagList(
-  logo_bar,
+  # logo_bar,
     div(
         class = "section-header",
         h2("📘 Module 2: Combination & Separation of Insurance Contracts", class = "section-title-top")
@@ -110,18 +110,44 @@ tagList(
               )
           )
     ),  
-    div(class = "module-section image-timeline-wrapper",
-          h3("IFRS 4 vs IFRS 17", class = "section-subheading"),
-          p("The table below shows how IFRS 4 and IFRS 17 treat the combination and separation of insurance contracts."),
-          div(
-              class = "timeline-image-container",
-              img(
-                  src = "images/ifrs4VSifrs17.png",  # make sure you save the image to this path
-                  alt = "IFRS 4 vs IFRS 17",
-                  class = "timeline-image"
-              )
+    div(class = "module-section",
+      h3("IFRS 4 vs IFRS 17", class = "section-subheading"),
+      p("The table below shows how IFRS 4 and IFRS 17 treat the combination and separation of insurance contracts."),
+      div(class = "table-responsive",
+        tags$table(class = "comparison-table",
+          tags$thead(
+            tags$tr(
+              tags$th("Aspect"),
+              tags$th("IFRS 4"),
+              tags$th("IFRS 17")
+            )
+          ),
+          tags$tbody(
+            tags$tr(
+              tags$td("Combination of Insurance Contracts"),
+              tags$td("No specific guidance: insurers followed local policies"),
+              tags$td("Requires contracts to be combined if they achieve an overall commercial effect")
+            ),
+            tags$tr(
+              tags$td("Embedded Derivatives"),
+              tags$td("Limited guidance: insurers could apply IFRS 9 in some cases"),
+              tags$td("Must be separated and assessed under IFRS 9 if not closely related to insurance risk")
+            ),
+            tags$tr(
+              tags$td("Investment Components"),
+              tags$td("Generally included within insurance contracts"),
+              tags$td("Must be separated and accounted for under IFRS 9 if they are distinct")
+            ),
+            tags$tr(
+              tags$td("Non-Insurance Services"),
+              tags$td("Often bundled within insurance contracts"),
+              tags$td("Must be separated and accounted for under IFRS 15 if they provide distinct goods or services")
+            )
           )
-    ), 
+        )
+      )
+    ),
+
 
     box(
         title = "Answer the following questions to test your understanding of Combination & Separation of Insurance Contracts.",

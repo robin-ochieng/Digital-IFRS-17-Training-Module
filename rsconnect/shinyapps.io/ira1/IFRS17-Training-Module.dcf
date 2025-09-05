@@ -1,0 +1,12 @@
+name: IFRS17-Training-Module
+title: IFRS17-Training-Module
+username: ira1
+account: ira1
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 14788702
+bundleId: 10366980
+url: https://ira1.shinyapps.io/IFRS17-Training-Module/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

@@ -1,0 +1,12 @@
+name: IFRS17-Training-Module
+title: IFRS17-Training-Module
+username: kenbright1
+account: kenbright1
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 14759950
+bundleId: 10292107
+url: https://kenbright1.shinyapps.io/IFRS17-Training-Module/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

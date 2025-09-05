@@ -1,7 +1,22 @@
 # This module is for the IFRS 17 module 7
 IFRS17Module7UI <- function(id) {
   ns <- NS(id)
-  tagList(
+  logo_bar <- fluidRow(
+    class = "logo-bar",                     # you’ll style this in CSS
+    column(
+      width = 12,
+      tags$div(
+        class = "logo-wrapper d-flex justify-content-between align-items-center",
+        # left-hand logo
+        tags$img(
+          src   = "images/ira_logo_.png", class = "logo logo-afdb"),
+        # right-hand logo
+        tags$img(src   = "images/kenbright.png",  class = "logo logo-kenbright")
+      )
+    )
+  )
+tagList(
+  # logo_bar,
     div(
       class = "section-header",
       h2("📘 Module 7: Discounting CSM and Risk Adjustment", class = "section-title-top")
@@ -68,6 +83,7 @@ IFRS17Module7UI <- function(id) {
     ),
     div(class = "module-section",
       h3("📉 Key Discounting Concepts in IFRS 17"),
+      tags$div(class = "table-responsive",
       tags$table(class = "table key-table", style = "width:100%",
         tags$thead(
           tags$tr(
@@ -102,12 +118,14 @@ IFRS17Module7UI <- function(id) {
           )
         )
       )
+    )
     ),
 
     div(class = "module-section",
       h3("📉 Contractual Service Margin"),
       p("This sub-module provides a comprehensive overview of how the CSM is calculated, adjusted, and released."),
       p("Under IFRS 17, the following tables show the paragraphs and appendix that cover CSM:"),
+      tags$div(class = "table-responsive",
       tags$table(class = "table key-table", style = "width:100%",
         tags$thead(
           tags$tr(
@@ -146,6 +164,7 @@ IFRS17Module7UI <- function(id) {
           )
         )
       )
+    )
     ),
 
   div(class = "module-section",
@@ -298,340 +317,283 @@ IFRS17Module7UI <- function(id) {
 
 
     box(
-      title = "1.  Why are future cash flows discounted under IFRS 17?",
+      title = "1. Which of the following is NOT a required characteristic of the discount rate under IFRS 17?",
       status = "white", solidHeader = TRUE, width = 12,
-      radioButtons(ns("q1"), label = NULL, choices = c(
-        "To reduce the tax liability associated with insurance contracts",
-        "To reflect the time value of money and financial risk not already in cash flow estimates",
-        "To match insurance revenue with incurred claims", 
-        "To comply with solvency regulations under IFRS 9"), selected = character(0))
-    ),
-    
-    box(
-      title = "2.  Which of the following is NOT a required characteristic of the discount rate under IFRS 17?",
-      status = "white", solidHeader = TRUE, width = 12,
-      radioButtons(ns("q2"), label = NULL, choices = c(
-        "Consistency with observable market prices for similar cash flows", 
-        "Inclusion of illiquidity premiums to reflect insurance contract liquidity", 
-        "Use of a single fixed discount rate across all types of contracts", 
-        "Alignment with other assumptions used in valuation to avoid double counting"), selected = character(0))
-    ),
-    
-    box(
-      title = "3.  Which of the following is a correct interpretation of IFRS 17's guidance on using market data to determine discount rates?",
-      status = "white", solidHeader = TRUE, width = 12,
-      radioButtons(ns("q3"), label = NULL, choices = c(
-        "Market observable discount rates can be used even if they reflect credit risk not relevant to the insurance liability.", 
-        "Observable market prices should always be used, even if they include factors unrelated to insurance contract cash flows.", 
-        "Discount rates must exclude the effect of market variables that do not impact the insurance contract's cash flows.", 
-        "Discount rates should reflect all observable market factors regardless of contract characteristics."), selected = character(0))
-    ),
-    
-    box(
-      title = "4. What is the primary distinction between the bottom-up and top-down approaches for deriving discount rates under IFRS 17?",
-      status = "white", solidHeader = TRUE, width = 12,
-      radioButtons(ns("q4"), label = NULL, choices = c(
-        "The bottom-up approach starts from asset returns and adjusts for insurance features", 
-        "The top-down approach uses a risk-free curve and adds risk premiums", 
-        "The bottom-up approach starts with a liquid risk-free yield curve and adjusts for illiquidity", 
-        "The top-down approach always requires matching the exact liquidity of insurance contracts"), selected = character(0))
+      radioButtons(ns("q1"), label = NULL,
+                  choices = c(
+                    "Consistency with observable market prices for similar cash flows",
+                    "Inclusion of illiquidity premiums to reflect insurance contract liquidity",
+                    "Use of a single fixed discount rate across all types of contracts",
+                    "Alignment with other assumptions used in valuation to avoid double counting"),
+                  selected = character(0))
     ),
 
     box(
-    title = "5.  Which statement is TRUE regarding liquidity adjustments in the top-down approach under IFRS 17?",
-    status = "white", solidHeader = TRUE, width = 12,
-    radioButtons(ns("q5"), label = NULL,
-                choices = c(
-                "Liquidity differences between the reference assets and insurance contracts must always be adjusted", 
-                "No liquidity adjustments are allowed under the top-down approach", 
-                "Adjustments are made only if the reference portfolio’s liquidity differs significantly from that of the insurance contracts", 
-                "Liquidity risk is already captured in the nominal cash flows, so no adjustments are required"), selected = character(0))
-    ),   
-    box(
-      title = "6. . An insurance contract is expected to pay the following future cash flows at the end of each year for the next 3 years:",
+      title = "2. Which of the following is a correct interpretation of IFRS 17's guidance on using market data to determine discount rates?",
       status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q2"), label = NULL,
+                  choices = c(
+                    "Discount rates must exclude the effect of market variables that do not impact the insurance contract's cash flows.",
+                    "Observable market prices should always be used, even if they include factors unrelated to insurance contract cash flows.",
+                    "Market observable discount rates can be used even if they reflect credit risk not relevant to the insurance liability.",
+                    "Discount rates should reflect all observable market factors regardless of contract characteristics."),
+                  selected = character(0))
+    ),
 
-    div(style = "display: flex; justify-content: center; margin-top: 20px;",
-      tags$table(class = "table table-bordered", style = "width: 300px; text-align: center;",
-        tags$thead(
-          tags$tr(
-            tags$th("Year", style = "background-color: #B3850D; color: white;"),
-            tags$th("Expected Cash Flow", style = "background-color: #B3850D; color: white;")
+    box(
+      title = "3. What is the primary distinction between the bottom-up and top-down approaches for deriving discount rates under IFRS 17?",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q3"), label = NULL,
+                  choices = c(
+                    "The bottom-up approach starts from asset returns and adjusts for insurance features",
+                    "The top-down approach uses a risk-free curve and adds risk premiums",
+                    "The top-down approach always requires matching the exact liquidity of insurance contracts.",
+                    "The bottom-up approach starts with a liquid risk-free yield curve and adjusts for illiquidity"),
+                  selected = character(0))
+    ),
+
+    box(
+      title = "4. Which statement is TRUE regarding liquidity adjustments in the top-down approach under IFRS 17?",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q4"), label = NULL,
+                  choices = c(
+                    "Liquidity differences between the reference assets and insurance contracts must always be adjusted",
+                    "No liquidity adjustments are allowed under the top-down approach",
+                    "Adjustments are made only if the reference portfolio’s liquidity differs significantly from that of the insurance contracts",
+                    "Liquidity risk is already captured in the nominal cash flows, so no adjustments are required"),
+                  selected = character(0))
+    ),
+
+        p(strong("5. An insurance contract is expected to pay the following future cash flows at the end of each year for the next 3 years:")),
+        div(style = "display: flex; justify-content: center; margin-top: 20px;",
+          tags$table(class = "table table-bordered", style = "width: 300px; text-align: center;",
+            tags$thead(
+              tags$tr(
+                tags$th("Year", style = "background-color: #B3850D; color: white;"),
+                tags$th("Expected Cash Flow", style = "background-color: #B3850D; color: white;")
+              )
+            ),
+            tags$tbody(
+              tags$tr(
+                tags$td("1", style = "background-color: #97BC39; color: white;"),
+                tags$td("$1,000")
+              ),
+              tags$tr(
+                tags$td("2", style = "background-color: #97BC39; color: white;"),
+                tags$td("$1,200")
+              ),
+              tags$tr(
+                tags$td("3", style = "background-color: #97BC39; color: white;"),
+                tags$td("$1,500")
+              )
+            )
           )
         ),
-        tags$tbody(
-          tags$tr(
-            tags$td("1", style = "background-color: #97BC39; color: white;"),
-            tags$td("$1,000")
-          ),
-          tags$tr(
-            tags$td("2", style = "background-color: #97BC39; color: white;"),
-            tags$td("$1,200")
-          ),
-          tags$tr(
-            tags$td("3", style = "background-color: #97BC39; color: white;"),
-            tags$td("$1,500")
-          )
-        )
-      )
-    ),
-
-      # Assumptions
-      tags$ul(
-        tags$li("The risk-free interest rate is 3% per annum, compounded annually."),
+      p("Assume the following:", style = "margin-left: 10px;"),
+      tags$ol(type = "a",
+        tags$li("The risk-free interest rate is 2% per annum, compounded annually."),
         tags$li("The liquidity adjustment for the insurance contract is 0.5% per annum."),
         tags$li("Use the bottom-up approach to calculate discount rates."),
         tags$li("Discounting is done from end-of-year values to present value at time 0.")
       ),
-      # Question prompt
-      p(strong("i) What is the total discount rate to be used under the bottom-up approach?")),
-      # Answer choices
-      radioButtons(ns("q6_part1"),
-                  label = NULL,
+    box(
+      title = " i) What is the total discount rate to be used under the bottom-up approach?",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q5_part1"), label = NULL,
+                  choices = c("A) 3.0%", "B) 2.5%", "C) 3.5%", "D) 2.0%"),
+                  selected = character(0))
+    ),
+
+    box(
+      title = "5. ii) What is the present value of the expected cash flows using the appropriate discount rate from Part A?",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q5_part2"), label = NULL,
+                  choices = c("A) 3,506.85", "B) 3,477.32", "C) 3,599.25", "D) 3,423.18"),
+                  selected = character(0))
+    ),
+
+    box(
+      title = "5. iii) If instead the top-down approach was used and the yield on the reference portfolio is 4.5%, and credit & non-insurance-related risks account for 2%, what would be the equivalent discount rate?",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q5_part3"), label = NULL,
+                  choices = c("A) 4.5%", "B) 2.5%", "C) 2.0%", "D) 6.5%"),
+                  selected = character(0))
+    ),
+
+    box(
+      title = "5. iv) What is the impact on the present value if the liquidity adjustment increases to 1.0%, keeping the risk-free rate constant?",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q5_part4"), label = NULL,
+                  choices = c("A) Present Value increases", "B) Present Value decreases", "C) Present Value stays the same", "D) Present Value becomes negative"),
+                  selected = character(0))
+    ),
+
+    box(
+      title = "6. When a group of insurance contracts becomes onerous after initial recognition under IFRS 17, what happens to the Contractual Service Margin (CSM)?",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q6"), label = NULL,
                   choices = c(
-                    "A) 3.0%",
-                    "B) 2.5%",
-                    "C) 3.5%",
-                    "D) 2.0%"
-                  ),
-                  selected = character(0)
-      ),
-
-      # Part ii
-      p(strong("ii) What is the present value of the expected cash flows using the appropriate discount rate from Part A?")),
-      radioButtons(ns("q6_part2"), label = NULL,
-        choices = c("A) 3,477.32", "B) 3,506.85", "C) 3,599.25", "D) 3,423.18"),
-        selected = character(0)
-      ),
-
-      # Part iii
-      p(strong("iii) If instead the top-down approach was used and the yield on the reference portfolio is 4.5%, and credit & non-insurance-related risks account for 2%, what would be the equivalent discount rate?")),
-      radioButtons(ns("q6_part3"), label = NULL,
-        choices = c("A) 4.5%", "B) 2.5%", "C) 2.0%", "D) 6.5%"),
-        selected = character(0)
-      ),
-
-      # Part iv
-      p(strong("iv) What is the impact on the present value if the liquidity adjustment increases to 1.0%, keeping the risk-free rate constant?")),
-      radioButtons(ns("q6_part4"), label = NULL,
-        choices = c("A) PV increases", "B) PV decreases", "C) PV stays the same", "D) PV becomes negative"),
-        selected = character(0)
-      )
-    ),
-
-
-    box(
-    title = "7.  What does the Contractual Service Margin (CSM) represent under IFRS 17?",
-    status = "white", solidHeader = TRUE, width = 12,
-    radioButtons(ns("q7"), label = NULL,
-                choices = c(
-                    "The present value of future claims",
-                    "The expected profit from insurance contracts yet to be earned",
-                    "The expected loss from past service",
-                    "The premium received net of acquisition costs"), selected = character(0))
-    ),
-
-    box(
-    title = "8.  When a group of insurance contracts becomes onerous after initial recognition under IFRS 17, what happens to the Contractual Service Margin (CSM)?",
-    status = "white", solidHeader = TRUE, width = 12,
-    radioButtons(ns("q8"), label = NULL,
-                choices = c(
                     "It is increased to reflect the higher expected losses.",
                     "It remains unchanged, as changes are only recognized at initial recognition.",
                     "It is set to zero, and a loss component is established to reflect the excess of fulfilment cash flows over the expected inflows.",
-                    "It is transferred to the Liability for Incurred Claims (LIC)."), selected = character(0))
+                    "It is transferred to the Liability for Incurred Claims (LIC)."),
+                  selected = character(0))
     ),
 
     box(
-    title = "9.  Can a loss component (LC) established for an onerous group of contracts under IFRS 17 be reversed in subsequent periods?",
-    status = "white", solidHeader = TRUE, width = 12,
-    radioButtons(ns("q9"), label = NULL,
-                choices = c(
-                    "No, once established, a loss component cannot be reversed.", 
-                    "Yes, if future changes in fulfilment cash flows indicate that the group is no longer onerous.", 
-                    "Only if the contracts are derecognized", 
-                    "Yes, but only through adjustments to the Risk Adjustment for non-financial risk."), selected = character(0))
+      title = "7. Can a loss component (LC) established for an onerous group of contracts under IFRS 17 be reversed in subsequent periods?",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q7"), label = NULL,
+                  choices = c(
+                    "No, once established, a loss component cannot be reversed.",
+                    "Yes, but only through adjustments to the Risk Adjustment for non-financial risk.",
+                    "Only if the contracts are derecognized.",
+                    "Yes, if future changes in fulfilment cash flows indicate that the group is no longer onerous."),
+                  selected = character(0))
     ),
 
     box(
-    title = "10. In the context of IFRS 17, what does the Liability for Remaining Coverage (LRC) represent when the Contractual Service Margin (CSM) is nil?",
-    status = "white", solidHeader = TRUE, width = 12,
-    radioButtons(ns("q10"), label = NULL,
-                choices = c(
-                    "Only the present value of future cash flows without any adjustments.",
+      title = "8. In the context of IFRS 17, what does the Liability for Remaining Coverage (LRC) represent when the Contractual Service Margin (CSM) is nil?",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q8"), label = NULL,
+                  choices = c(
                     "The sum of the fulfilment cash flows and the loss component.",
+                    "Only the present value of future cash flows without any adjustments.",
                     "The Liability for Incurred Claims (LIC) only.",
-                    "The Risk Adjustment for non-financial risk only."), selected = character(0))
+                    "The Risk Adjustment for non-financial risk only."),
+                  selected = character(0))
     ),
 
     box(
-    title = "11.  Which discount rate is used to accrete interest on the CSM?",
-    status = "white", solidHeader = TRUE, width = 12,
-    radioButtons(ns("q11"), label = NULL,
-                choices = c(
+      title = "9. Which discount rate is used to accrete interest on the CSM?",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q9"), label = NULL,
+                  choices = c(
                     "The risk-free rate at the reporting date",
                     "The weighted average discount rate for incurred claims",
-                    "The discount rate at initial recognition of the group of contracts",
-                    "The current market interest rate for government bonds"), selected = character(0))
+                    "The current market interest rate for government bonds",
+                    "The discount rate at initial recognition of the group of contracts"),
+                  selected = character(0))
+    ),
+      p("10. An insurance company issues a group of insurance contracts on 1 January 20X1. The following information is available:"),
+      tags$ol(type = "a",
+        tags$li("Present Value of Future Cash Inflows: $ 1,200."),
+        tags$li("Present Value of Future Cash Outflows (including acquisition costs): $ 1,000"),
+        tags$li("Risk Adjustment for Non-Financial Risk: $ 50"),
+        tags$li("Discount rate at initial recognition: 5% annually, compounded yearly."),
+        tags$li("Coverage period: 4 years, with coverage services evenly provided over time.")
+      ),
+    box(
+      title = "i) What is the initial CSM at 1 January 20X1?",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q10_part1"), label = NULL,
+                  choices = c("A. $ 200", "B. $ 150", "C. $ 250", "D. $ 100"),
+                  selected = character(0))
     ),
 
     box(
-      title = "12. When does an insurance contract group transition from an asset to a liability?",
+      title = "10. ii) What is the CSM balance at 31 December 20X1, before release, assuming a 5% interest rate?",
       status = "white", solidHeader = TRUE, width = 12,
-      # Part a – concept check
-      radioButtons(ns("q12"), label = NULL,
-        choices = c(
-          "When premiums are not received",
-          "When expected future outflows exceed inflows ",
-          "When it is reinsured",
-          "At contract expiry"
-        ),
-        selected = character(0)
-      ),
-      # Scenario introduction
-      p(strong("An insurance company issues a group of insurance contracts on 1 January 20X1. The following information is available:")),
-      tags$ul(
-        tags$li("Present Value of Future Cash Inflows: CU 1,200"),
-        tags$li("Present Value of Future Cash Outflows (incl. acquisition costs): CU 1,000"),
-        tags$li("Risk Adjustment for Non-Financial Risk: CU 50"),
-        tags$li("Discount rate at initial recognition: 5% annually, compounded yearly"),
-        tags$li("Coverage period: 4 years, with coverage services evenly provided")
-      ),
-      # Part i
-      p(strong("i) What is the initial CSM at 1 January 20X1?")),
-      radioButtons(ns("q12_part1"), label = NULL,
-        choices = c("A. CU 200", "B. CU 150", "C. CU 250", "D. CU 100"),
-        selected = character(0)
-      ),
-      # Part ii
-      p(strong("ii) What is the CSM balance at 31 December 20X1, before release, assuming a 5% interest rate?")),
-      radioButtons(ns("q12_part2"), label = NULL,
-        choices = c("A. CU 150", "B. CU 157.5", "C. CU 160", "D. CU 155"),
-        selected = character(0)
-      ),
-      # Part iii
-      p(strong("iii) If the CSM is released evenly over the 4-year coverage period, what is the CSM balance after release at 31 December 20X1?")),
-      radioButtons(ns("q12_part3"), label = NULL,
-        choices = c("A. CU 118.125", "B. CU 120", "C. CU 130", "D. CU 100"),
-        selected = character(0)
-      )
+      radioButtons(ns("q10_part2"), label = NULL,
+                  choices = c("A. $ 150", "B. $ 157.5", "C. $ 160", "D. $ 155"),
+                  selected = character(0))
     ),
 
-      box(
-      title = "13.   What is the primary purpose of the risk adjustment under IFRS 17?",
+    box(
+      title = "10. iii) If the CSM is released evenly over the 4-year coverage period, what is the CSM balance after release at 31 December 20X1?",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q10_part3"), label = NULL,
+                  choices = c("A. $ 118.125", "B. $ 120", "C. $ 130", "D. $ 100"),
+                  selected = character(0))
+    ),
+
+    box(
+      title = "11. Which of the following characteristics would lead to a higher risk adjustment according to IFRS 17 principles?",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q11"), label = NULL,
+                  choices = c(
+                    "High-frequency, low-severity risks",
+                    "Short-duration contracts with predictable claims",
+                    "Risks with narrow probability distributions",
+                    "Contracts where little is known about emerging experience"),
+                  selected = character(0))
+    ),
+
+    box(
+      title = "12. Which of the following risks is excluded from the IFRS 17 risk adjustment?",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q12"), label = NULL,
+                  choices = c(
+                    "Lapse risk",
+                    "Expense risk",
+                    "Financial risk (e.g. interest rate risk)",
+                    "Morbidity risk"),
+                  selected = character(0))
+    ),
+
+    box(
+      title = "13. Two otherwise identical contracts differ only in duration: Contract A is 5 years; Contract B is 15 years. Which will have the higher risk adjustment, and why?",
       status = "white", solidHeader = TRUE, width = 12,
       radioButtons(ns("q13"), label = NULL,
                   choices = c(
-                      "To cover future investment volatility", 
-                      "To reflect the insurer’s risk of financial market fluctuations",
-                      "To compensate for non-financial risk uncertainty in future cash flows", 
-                      "To reduce the impact of changes in discount rates"), selected = character(0))
-      ),
+                    "Contract A, due to faster runoff",
+                    "Contract B, due to longer exposure to uncertainty",
+                    "Both will have the same risk adjustment",
+                    "Contract A, due to the need for more immediate reserves"),
+                  selected = character(0))
+    ),
 
-      # Question 14
-      box(
-      title = "14. Which of the following characteristics would lead to a higher risk adjustment according to IFRS 17 principles?",
+    box(
+      title = "14. Which method is not typically used to quantify the risk adjustment under IFRS 17?",
       status = "white", solidHeader = TRUE, width = 12,
       radioButtons(ns("q14"), label = NULL,
                   choices = c(
-                      "High-frequency, low-severity risks",
-                      "Short-duration contracts with predictable claims",
-                      "Risks with narrow probability distributions",
-                      "Contracts where little is known about emerging experience"
-                  ),
-                  selected = character(0)
-      )
-      ),
-
-      # Question 15
-      box(
-      title = "15. Which of the following risks is excluded from the IFRS 17 risk adjustment?",
-      status = "white", solidHeader = TRUE, width = 12,
-      radioButtons(ns("q15"), label = NULL,
-                  choices = c(
-                      "Lapse risk",
-                      "Expense risk",
-                      "Financial risk (e.g. interest rate risk)",
-                      "Morbidity risk"
-                  ),
-                  selected = character(0)
-      )
-      ),
-
-      # Question 16
-      box(
-      title = "16. Two otherwise identical contracts differ only in duration: Contract A is 5 years; Contract B is 15 years. Which will have the higher risk adjustment, and why?",
-      status = "white", solidHeader = TRUE, width = 12,
-      radioButtons(ns("q16"), label = NULL,
-                  choices = c(
-                      "Contract A, due to faster runoff",
-                      "Contract B, due to longer exposure to uncertainty",
-                      "Both will have the same risk adjustment",
-                      "Contract A, due to the need for more immediate reserves"
-                  ),
-                  selected = character(0)
-      )
-      ),
-
-      # Question 17
-      box(
-      title = "17. Which method is not typically used to quantify the risk adjustment under IFRS 17?",
-      status = "white", solidHeader = TRUE, width = 12,
-      radioButtons(ns("q17"), label = NULL,
-                  choices = c(
-                      "Cost of capital method",
-                      "Conditional Tail Expectation (CTE)",
-                      "Confidence level",
-                      "Historical premium rate analysis"
-                  ),
-                  selected = character(0)
-      )
-      ),
-
-    # Question 18
-    box(
-      title = "18. Which of the following is *not* shown separately in IFRS 17 SFP presentation?",
-      status = "white", solidHeader = TRUE, width = 12,
-
-      # Part 1 – Original question
-      radioButtons(ns("q18"), label = NULL,
-        choices = c(
-          "Insurance contract liabilities",
-          "Insurance contract assets",
-          "Deferred acquisition costs",
-          "Reinsurance contract assets"
-        ),
-        selected = character(0)
-      ),
-
-      # Scenario intro
-      p(strong("An insurer estimates that the present value of future cash outflows from a group of insurance contracts follows a normal distribution with:")),
-      tags$ul(
+                    "Cost of capital method",
+                    "Conditional Tail Expectation (CTE)",
+                    "Confidence level",
+                    "Historical premium rate analysis"),
+                  selected = character(0))
+    ),
+      p("15.	An insurer estimates that the present value of future cash outflows from a group of insurance contracts follows a normal distribution with:"),
+      tags$ol(type = "i",
         tags$li("Mean (Expected Value): $10,000,000"),
         tags$li("Standard Deviation: $1,500,000"),
-        tags$li("The insurer uses a confidence level approach to determine the risk adjustment.")
+        tags$li("The insurer uses a confidence level approach to determine the risk adjustment for non-financial risk.")
       ),
+    box(
+      title = "(a) What is the value of the liability at the 75% confidence level? Use z = 0.674",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q15_part1"), label = NULL,
+                  choices = c(
+                    "A. $10,506,000",
+                    "B. $11,011,000",
+                    "C. $11,674,000",
+                    "D. $12,350,000"),
+                  selected = character(0))
+    ),
 
-      # Q18 (a)
-      p(strong("(a) What is the value of the liability at the 75% confidence level? Use z = 0.674")),
-      radioButtons(ns("q18_part1"), label = NULL,
-        choices = c("A. $10,506,000", "B. $11,011,000", "C. $11,674,000", "D. $12,350,000"),
-        selected = character(0)
-      ),
+    box(
+      title = "15. (b) What is the risk adjustment for non-financial risk at the 75% confidence level?",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q15_part2"), label = NULL,
+                  choices = c(
+                    "A. $674,000",
+                    "B. $750,000",
+                    "C. $1,011,000",
+                    "D. $1,674,000"),
+                  selected = character(0))
+    ),
 
-      # Q18 (b)
-      p(strong("(b) What is the risk adjustment for non-financial risk at the 75% confidence level?")),
-      radioButtons(ns("q18_part2"), label = NULL,
-        choices = c("A. $674,000", "B. $750,000", "C. $1,011,000", "D. $1,674,000"),
-        selected = character(0)
-      ),
-
-      # Q18 (c)
-      p(strong("(c) If the insurer increases the confidence level to 90%, what is the new risk adjustment? (Use z = 1.282)")),
-      radioButtons(ns("q18_part3"), label = NULL,
-        choices = c("A. $1,282,000", "B. $1,500,000", "C. $1,922,000", "D. $2,282,000"),
-        selected = character(0)
-      )
+    box(
+      title = "15. (c) If the insurer increases the confidence level to 90%, what is the new risk adjustment? (Use z = 1.282)",
+      status = "white", solidHeader = TRUE, width = 12,
+      radioButtons(ns("q15_part3"), label = NULL,
+                  choices = c(
+                    "A. $1,282,000",
+                    "B. $1,500,000",
+                    "C. $1,922,000",
+                    "D. $2,282,000"),
+                  selected = character(0))
     ),
 
     actionButton(ns("submit"), "Submit Quiz", icon = icon("check"), class = "btn-primary control-button-submit" ),
@@ -649,115 +611,95 @@ IFRS17Module7UI <- function(id) {
     )
 }
 
-correct_answers <- list(
+correct_answers_module7 <- list(
   q1 = list(
-    answer = "To reflect the time value of money and financial risk not already in cash flow estimates",
-    explanation = "IFRS 17 requires discounting to reflect the time value of money and financial risks not already included in cash flows (Paragraph 36)."
+    answer = "Use of a single fixed discount rate across all types of contracts",
+    explanation = "IFRS 17 does not require or recommend a single fixed discount rate for all contracts. Instead, the discount rate should reflect characteristics like liquidity, inflation, and dependency on underlying items."
   ),
   q2 = list(
-    answer = "Use of a single fixed discount rate across all types of contracts",
-    explanation = "IFRS 17 emphasizes that discount rates should reflect specific contract characteristics—not a fixed rate across all contracts."
+    answer = "Discount rates must exclude the effect of market variables that do not impact the insurance contract's cash flows.",
+    explanation = "IFRS 17 requires that discount rates exclude market variables that don’t affect the cash flows of the insurance contract, even if these variables are reflected in market prices."
   ),
   q3 = list(
-    answer = "Discount rates must exclude the effect of market variables that do not impact the insurance contract's cash flows.",
-    explanation = "This ensures liabilities reflect only relevant economic assumptions (IFRS 17 Paras 36b–c)."
+    answer = "The bottom-up approach starts with a liquid risk-free yield curve and adjusts for illiquidity",
+    explanation = "The bottom-up approach starts with a liquid risk-free yield curve, then adjusts it to reflect the characteristics of the insurance contracts."
   ),
   q4 = list(
-    answer = "The bottom-up approach starts with a liquid risk-free yield curve and adjusts for illiquidity",
-    explanation = "The bottom-up approach starts with a liquid risk-free yield curve and adjusts for illiquidity"
-  ),
-  q5 = list(
     answer = "Adjustments are made only if the reference portfolio’s liquidity differs significantly from that of the insurance contracts",
-    explanation = "Liquidity adjustments are made only when the reference portfolio's liquidity differs significantly from that of the insurance contracts."
+    explanation = "IFRS 17 allows flexibility in adjusting for liquidity under the top-down approach, requiring adjustments only if the reference assets’ liquidity is not reasonably consistent with that of the insurance contracts."
   ),
-  q6_part1 = list(
+  q5_part1 = list(
     answer = "B) 2.5%",
-    explanation = "The liquidity adjustment is subtracted from the risk-free rate to arrive at the discount rate."
+    explanation = "Under the bottom-up approach, the discount rate is calculated as the sum of the risk-free rate and liquidity premium: 2% + 0.5% = 2.5%"
   ),
-  q6_part2 = list(
-    answer = "B) 3,506.85",
-    explanation = "The present value is calculated using the adjusted discount rate of 2.5%."
+  q5_part2 = list(
+    answer = "A) 3,506.85",
+    explanation = "Present value is calculated using a 2.5% discount rate applied to the given cash flows: PV ≈ 975.61 + 1,142.10 + 1,389.14 = 3,506.85"
   ),
-  q6_part3 = list(
+  q5_part3 = list(
     answer = "B) 2.5%",
-    explanation = "The credit/non-insurance risk adjustment is subtracted from the portfolio yield to arrive at the discount rate."
+    explanation = "From a 4.5% reference portfolio yield, subtracting 2% non-insurance risk adjustments gives a 2.5% discount rate, aligning with bottom-up."
   ),
-  q6_part4 = list(
-    answer = "B) PV decreases",
-    explanation = "Increasing the liquidity adjustment increases the discount rate, which decreases the present value of future cash flows."
+  q5_part4 = list(
+    answer = "B) Present Value decreases",
+    explanation = "An increase in the liquidity adjustment increases the total discount rate, leading to a lower present value of future cash flows."
+  ),
+  q6 = list(
+    answer = "It is set to zero, and a loss component is established to reflect the excess of fulfilment cash flows over the expected inflows.",
+    explanation = "If contracts become onerous after recognition, IFRS 17 sets the CSM to zero and establishes a loss component."
   ),
   q7 = list(
-    answer = "The expected profit from insurance contracts yet to be earned",
-    explanation = "The CSM represents the unearned profit from insurance contracts that will be recognized as revenue over the coverage period."
+    answer = "Yes, if future changes in fulfilment cash flows indicate that the group is no longer onerous.",
+    explanation = "IFRS 17 allows reversal of loss components if favourable changes indicate the group is no longer onerous."
   ),
   q8 = list(
-    answer = "It is set to zero, and a loss component is established to reflect the excess of fulfilment cash flows over the expected inflows.",
-    explanation = "For onerous contracts, the CSM is eliminated and a loss component is recorded to reflect the excess of fulfilment cash flows over expected inflows."
+    answer = "The sum of the fulfilment cash flows and the loss component.",
+    explanation = "When the CSM is nil, the LRC comprises the fulfilment cash flows and the loss component."
   ),
   q9 = list(
-    answer = "Yes, if future changes in fulfilment cash flows indicate that the group is no longer onerous.",
-    explanation = "Reversals are permitted when the group of contracts becomes profitable again."
+    answer = "The discount rate at initial recognition of the group of contracts",
+    explanation = "CSM interest accretion is based on the discount rate determined at initial recognition of the group."
   ),
-  q10 = list(
-    answer = "The sum of the fulfilment cash flows and the loss component.",
-    explanation = "When the CSM is nil, the LRC includes both the fulfilment cash flows and the loss component."
+  q10_part1 = list(
+    answer = "B. $ 150",
+    explanation = "CSM = PV inflows – PV outflows – Risk Adjustment = 1,200 – 1,000 – 50 = 150"
+  ),
+  q10_part2 = list(
+    answer = "B. $ 157.5",
+    explanation = "Interest accretion = CSM × 1.05 = 150 × 1.05 = 157.5"
+  ),
+  q10_part3 = list(
+    answer = "A. $ 118.125",
+    explanation = "Release = 157.5 ÷ 4 = 39.375; Remaining CSM = 157.5 – 39.375 = 118.125"
   ),
   q11 = list(
-    answer = "The discount rate at initial recognition of the group of contracts",
-    explanation = "The CSM interest accretion uses the discount rate set at initial recognition."
+    answer = "Contracts where little is known about emerging experience",
+    explanation = "Higher uncertainty from limited knowledge leads to a higher risk adjustment under IFRS 17 (B91)."
   ),
   q12 = list(
-    answer = "When expected future outflows exceed inflows",
-    explanation = "A group of contracts is classified as a liability when its fulfilment cash flows reflect a net obligation."
-  ),
-  q12_part1 = list(
-    answer = "B. CU 150",
-    explanation = "The CSM is calculated as the net fulfilment cash flows (1,200 - 1,000 - 50)."
-  ),
-  q12_part2 = list(
-    answer = "B. CU 157.5",
-    explanation = "The CSM accretion is calculated as 150 × 1.05."
-  ),
-  q12_part3 = list(
-    answer = "A. CU 118.125",
-    explanation = "The CSM released is calculated as 157.5 ÷ 4, and the remaining CSM is 157.5 - 39.375."
+    answer = "Financial risk (e.g. interest rate risk)",
+    explanation = "The risk adjustment only covers non-financial risks. Financial risks are included in discount rate or cash flows."
   ),
   q13 = list(
-    answer = "To compensate for non-financial risk uncertainty in future cash flows",
-    explanation = "The risk adjustment compensates for non-financial risk uncertainty."
+    answer = "Contract B, due to longer exposure to uncertainty",
+    explanation = "Longer duration implies greater uncertainty, requiring higher risk adjustment (B91(b))."
   ),
   q14 = list(
-    answer = "Contracts where little is known about emerging experience",
-    explanation = "Less knowledge leads to more uncertainty and a higher risk adjustment."
-  ),
-  q15 = list(
-    answer = "Financial risk (e.g. interest rate risk)",
-    explanation = "The risk adjustment under IFRS 17 is designed to cover only non-financial risks."
-  ),
-  q16 = list(
-    answer = "Contract B, due to longer exposure to uncertainty",
-    explanation = "Longer duration implies greater uncertainty and therefore a higher risk adjustment."
-  ),
-  q17 = list(
     answer = "Historical premium rate analysis",
-    explanation = "Historical premium analysis is not a valid standalone method for calculating risk adjustment."
+    explanation = "Historical premium analysis is not a valid standalone method for risk adjustment; IFRS 17 prefers cost of capital and quantile methods."
   ),
-  q18 = list(
-    answer = "Deferred acquisition costs",
-    explanation = "DAC is not separately presented under IFRS 17 — it's included in fulfilment cash flows."
-  ),
-  q18_part1 = list(
+  q15_part1 = list(
     answer = "B. $11,011,000",
-    explanation = "The liability is calculated as Mean + z × StdDev = 10M + 0.674 × 1.5M."
+    explanation = "Liability = 10,000,000 + 0.674 × 1,500,000 = 11,011,000"
   ),
-  q18_part2 = list(
+  q15_part2 = list(
     answer = "C. $1,011,000",
-    explanation = "The risk adjustment is the excess over the expected value at 75% confidence."
+    explanation = "Risk adjustment = Liability at 75% – Expected value = 11,011,000 – 10,000,000"
   ),
-  q18_part3 = list(
+  q15_part3 = list(
     answer = "C. $1,922,000",
-    explanation = "The risk adjustment increases as the confidence level (and z) increases."
-  )  
+    explanation = "Risk adjustment = 10,000,000 + 1.282 × 1,500,000 – 10,000,000 = 1,923,000 (rounded to 1,922,000)"
+  )
 )
 
 
@@ -775,13 +717,14 @@ IFRS17Module7Server <- (function(id) {
         removeModal()
         # 1. List out all your question input IDs
         question_ids <- c(
-          paste0("q", 1:5),
-          paste0("q6_part", 1:4),
-          paste0("q", 7:11),
-          c("q12", paste0("q12_part", 1:3)),
-          paste0("q", 13:17),
-          c("q18", paste0("q18_part", 1:3))
+          paste0("q", 1:4),
+          paste0("q5_part", 1:4),
+          paste0("q", 6:9),
+          paste0("q10_part", 1:3),
+          paste0("q", 11:14),
+          paste0("q15_part", 1:3)
         )
+
         
         # 2. Find which ones are missing
         missing <- vapply(question_ids, function(qid) {
@@ -825,9 +768,9 @@ IFRS17Module7Server <- (function(id) {
         score(0)
         feedback <- list()
 
-    for (qid in names(correct_answers)) {
-      correct <- correct_answers[[qid]]$answer
-      explanation <- correct_answers[[qid]]$explanation
+    for (qid in names(correct_answers_module7)) {
+      correct <- correct_answers_module7[[qid]]$answer
+      explanation <- correct_answers_module7[[qid]]$explanation
       user_answer <- input[[qid]]
 
       if (user_answer == correct) {
@@ -843,7 +786,7 @@ IFRS17Module7Server <- (function(id) {
 
 
     output$result <- renderUI({
-      total_questions <- length(correct_answers)
+      total_questions <- length(correct_answers_module7)
       percentage       <- round((score() / total_questions) * 100, 1)
       name             <- isolate(input$participant_name)
       color            <- if (percentage >= 70) "#198754" else "#dc3545"
@@ -933,15 +876,15 @@ IFRS17Module7Server <- (function(id) {
             ),  # ← comma!
 
             # ——— Print Button ———
-            div(
-              style = "text-align:center; margin-top:30px;",
-              actionButton(
-                ns("print_certificate"),
-                "Print Results as PDF",
-                icon  = icon("print"),
-                class = "control-button-tavnav no-print"
-              )
-            )
+            # div(
+            #   style = "text-align:center; margin-top:30px;",
+            #   actionButton(
+            #     ns("print_certificate"),
+            #     "Print Results as PDF",
+            #     icon  = icon("print"),
+            #     class = "control-button-tavnav no-print"
+            #   )
+            # )
 
           )  
 
@@ -952,39 +895,39 @@ IFRS17Module7Server <- (function(id) {
     })  
     })
 
-    observeEvent(input$print_certificate, {
-      runjs('
-        var cert = document.querySelector(".print-area");
-        if (!cert) {
-          alert("Nothing to print – make sure you have submitted the quiz first.");
-        } else {
-          // open a blank window
-          var w = window.open("", "_blank", "width=800,height=600");
-          // build a print-only style to hide .no-print
-          var head = `
-            <head>
-              <title>Participation Certificate</title>
-              <style>
-                body { margin:20px; font-family:Arial,sans-serif; }
-                @media print { .no-print { display: none; } }
-              </style>
-            </head>`;
-          // grab the certificate HTML
-          var body = "<body>" + cert.outerHTML +
-                    // wrap your button in a no-print div
-                    "<div class=\\"no-print\\" style=\\"text-align:center; margin-top:30px;\\">" +
-                      "<button onclick=\\"window.print()\\">Print Certificate as PDF</button>" +
-                    "</div></body>";
-          // write it all
-          w.document.write("<!doctype html><html>" + head + body + "</html>");
-          w.document.close();
-          w.onload = function() {
-            w.focus();
-            w.print();
-          };
-        }
-      ')
-    })
+    # observeEvent(input$print_certificate, {
+    #   runjs('
+    #     var cert = document.querySelector(".print-area");
+    #     if (!cert) {
+    #       alert("Nothing to print – make sure you have submitted the quiz first.");
+    #     } else {
+    #       // open a blank window
+    #       var w = window.open("", "_blank", "width=800,height=600");
+    #       // build a print-only style to hide .no-print
+    #       var head = `
+    #         <head>
+    #           <title>Participation Certificate</title>
+    #           <style>
+    #             body { margin:20px; font-family:Arial,sans-serif; }
+    #             @media print { .no-print { display: none; } }
+    #           </style>
+    #         </head>`;
+    #       // grab the certificate HTML
+    #       var body = "<body>" + cert.outerHTML +
+    #                 // wrap your button in a no-print div
+    #                 "<div class=\\"no-print\\" style=\\"text-align:center; margin-top:30px;\\">" +
+    #                   "<button onclick=\\"window.print()\\">Print Certificate as PDF</button>" +
+    #                 "</div></body>";
+    #       // write it all
+    #       w.document.write("<!doctype html><html>" + head + body + "</html>");
+    #       w.document.close();
+    #       w.onload = function() {
+    #         w.focus();
+    #         w.print();
+    #       };
+    #     }
+    #   ')
+    # })
 
     # create a reactive for the “Next” click
     to_module_8 <- reactive(input$to_module_8)

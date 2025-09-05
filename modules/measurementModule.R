@@ -15,15 +15,14 @@ IFRS17MeasurementUI <- function(id) {
     )
   )
 tagList(
-  logo_bar,
+  # logo_bar,
     div(
         class = "section-header",
         h2("🔍 IFRS 17 Foundations and Standards Overview", class = "section-title-top")
     ),
-      div(class = "model-outer-wrapper",
-        div(class = "ifrs17-model-container",
+      div(class = "module-section",
           h2("📖 IFRS 17 Glossary", class = "section-title"),
-
+        tags$div(class = "table-responsive",
           tags$table(class = "glossary-table",
             tags$thead(
               tags$tr(
@@ -170,13 +169,12 @@ tagList(
               )
             )
           )
-        )
+        )  
       ),
 
-    div(class = "model-outer-wrapper",
-      div(class = "ifrs17-model-container",
+    div(class = "module-section",
         h2("⚖️ IFRS Standards", class = "section-title"),
-        
+      tags$div(class = "table-responsive",  
         tags$table(class = "ifrs-table",
           tags$thead(
             tags$tr(
@@ -273,17 +271,16 @@ tagList(
             )
           )
         )
-      )
+      )  
     ),
 
 
 
         
 
-      div(class = "model-outer-wrapper",
-        div(class = "ifrs17-model-container",
+      div(class = "module-section",
           h2("📘 IAS Standards", class = "section-title"),
-
+        tags$div(class = "table-responsive",
           tags$table(class = "ias-table",
             tags$thead(
               tags$tr(
@@ -322,8 +319,7 @@ tagList(
         )
       ),
 
-    div(class = "model-outer-wrapper",
-        div(class = "ifrs17-model-container",
+    div(class = "module-section",
             h2("📊 Measurement Models", class = "section-title"),
 
             p(class = "model-intro",
@@ -346,7 +342,6 @@ tagList(
 
             div(plotOutput(ns("model_plot")), class = "plot-wrapper")
             )
-        )
     ),
 
           div(
